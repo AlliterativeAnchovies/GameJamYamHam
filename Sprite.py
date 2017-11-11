@@ -13,3 +13,5 @@ class Sprite:
         self.spriteOn = 0
     def draw(self):
         screen.blit(allSprites[self.curSprite],(self.px, self.py))
+    def changeSprite(self,newSprite):
+        self.curSprite = newSprite
