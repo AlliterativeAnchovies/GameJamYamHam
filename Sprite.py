@@ -13,4 +13,3 @@ class Sprite:
         self.spriteOn = 0
     def draw(self):
         screen.blit(allSprites[self.curSprite],(self.px, self.py))
-        #pygame.draw.rect(screen, (0,0,0), (self.px, self.py, SPRITE_SIZE, SPRITE_SIZE))
