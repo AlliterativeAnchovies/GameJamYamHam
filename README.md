@@ -1,2 +1,2 @@
 # GameJamYamHam
-Help me
+It's a Game Jam with Yam and Ham!
