@@ -1,4 +1,5 @@
 #This File Contains The Sprite Class
+import pygame
 
 class Sprite:
     def __init__(self,spriteNames,locationX,locationY):

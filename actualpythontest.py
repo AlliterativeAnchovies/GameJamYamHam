@@ -18,6 +18,8 @@ while done == False:
 	pygame.draw.rect(screen, (0,0,0), (100, 100, 100, 100))
 
 	spriteList = [Sprite('',0,0),Sprite('',1,1)]
+	for sp in spriteList:
+		sp.draw()
 	pygame.display.update()
 	clock.tick(60)
 
