@@ -1,6 +1,6 @@
 from Renderer import screen,size,clock
 from Sprite import Sprite
-import pyglet
+import pygame
 
 
 #load images
