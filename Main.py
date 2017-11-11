@@ -1,7 +1,2 @@
-#include <boost/python.hpp>
-
-BOOST_PYTHON_MODULE(hello_ext)
-{
-    using namespace boost::python;
-    def("greet", greet);
-}
+import hello_ext
+print(hello_ext.greet())
