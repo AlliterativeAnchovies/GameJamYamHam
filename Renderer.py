@@ -1,5 +1,6 @@
 import pyglet
 
+
 window = pyglet.window.Window()
 image = pyglet.resource.image('resources/images/Base Tile 1.png')
 
