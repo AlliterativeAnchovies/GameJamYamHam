@@ -1,9 +1,11 @@
-import pygame
+import pyglet
 
-pygame.init()
-SPRITE_SIZE = 16
-size = [640, 480]
-screen = pygame.display.set_mode(size)
-pygame.display.set_caption('My Game')
-clock = pygame.time.Clock()
-allSprites = {"test":pygame.image.load('resources/images/Base Tile 1.png')}
+window = pyglet.window.Window()
+image = pyglet.resource.image('resources/images/Base Tile 1.png')
+
+@window.event
+def on_draw():
+    window.clear()
+    image.blit(0, 0)
+
+pyglet.app.run()

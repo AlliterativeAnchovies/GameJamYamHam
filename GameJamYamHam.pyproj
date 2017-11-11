@@ -20,6 +20,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="actualpythontest.py" />
+    <Compile Include="Renderer.py" />
+    <Compile Include="Sprite.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
 </Project>
