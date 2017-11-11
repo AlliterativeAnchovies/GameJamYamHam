@@ -2,6 +2,10 @@ from Renderer import screen,size,clock
 from Sprite import Sprite
 import pygame
 
+
+#load images
+
+
 done = False
 while done == False:
 	for event in pygame.event.get():
@@ -12,7 +16,7 @@ while done == False:
 
 	pygame.draw.rect(screen, (0,0,0), (100, 100, 100, 100))
 
-	spriteList = [Sprite('',0,0),Sprite('',1,1)]
+	spriteList = [Sprite(["test"],0,0),Sprite(["test"],1,1)]
 	for sp in spriteList:
 		sp.draw()
 	pygame.display.update()
