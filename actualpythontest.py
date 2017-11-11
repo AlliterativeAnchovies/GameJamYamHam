@@ -1,11 +1,6 @@
-import pygame
+from Renderer import screen,size,clock
 from Sprite import Sprite
-
-pygame.init()
-size = [640, 480]
-screen = pygame.display.set_mode(size)
-pygame.display.set_caption('My Game')
-clock = pygame.time.Clock()
+import pygame
 
 done = False
 while done == False:

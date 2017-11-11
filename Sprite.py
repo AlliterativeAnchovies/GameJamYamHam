@@ -1,4 +1,5 @@
 #This File Contains The Sprite Class
+from Renderer import screen
 import pygame
 
 class Sprite:
