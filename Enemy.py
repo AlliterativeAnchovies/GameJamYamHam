@@ -1,5 +1,6 @@
 #Enemy are baddies that do bad stuff beccause they're mean.
 from Movable import Movable
+from Renderer import spriteList
 enemyArchetypes = []
 
 class Enemy(Movable):
@@ -22,3 +23,4 @@ def initializeEnemies():
     global enemyArchetypes
     dummyspritedict = {"defaultstate":["test"]}
     enemyArchetypes[0] = Enemy(dummyspritedict,0,0,0,0)
+    enemyArchetypes[1] = Enemy(dummyspritedict,0,0,1,0)
