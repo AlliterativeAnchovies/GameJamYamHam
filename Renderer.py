@@ -46,7 +46,7 @@ def loadGrids():
                     tiletoappend = Tile(dummyspritedict,0,0,False,True)
                     tileRow.append(tiletoappend)
             tileList.append(tileRow)
-        gridList.append(tileList)
+        gridList.append(Grid(tileList,0,0))
 loadSprites()
 loadGrids()
 
