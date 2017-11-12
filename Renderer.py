@@ -8,8 +8,9 @@ os.environ['SDL_VIDEO_CENTERED'] = '0'
 SPRITE_SIZE = 16
 GRID_SIZE = 8
 pygame.init()
-screenwidth, screenheight = pygame.display.Info().current_w, pygame.display.Info().current_h
-size = [screenwidth, SPRITE_SIZE*GRID_SIZE*6]
+SCREEN_WIDTH, RAW_SCREEN_HEIGHT = pygame.display.Info().current_w, pygame.display.Info().current_h
+SCREEN_HEIGHT = SPRITE_SIZE*GRID_SIZE*6
+size = [SCREEN_WIDTH, SCREEN_HEIGHT]
 screen = pygame.display.set_mode(size)
 clock = pygame.time.Clock()
 allSprites = {"test":pygame.image.load('resources/images/Test.bmp').convert()}
