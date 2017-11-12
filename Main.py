@@ -5,7 +5,7 @@
 #but I'm too lazy to do that.
 
 #import Renderer
-from Renderer import spriteList,gridList,loadSprites,screen,clock,dotick
+import Renderer
 from Sprite import Sprite
 from Movable import Movable
 from Pickup import Pickup
@@ -20,17 +20,16 @@ import pygame
 #initialize everything
 
 def init():
-    global spriteList,gridList
-    loadSprites()
+    Renderer.loadSprites()
     loadGrids()
     initializeEnemies()
     #print(spriteList)
 
 #draw everything
 def drawLoop():
-    dotick()
-    screen.fill((255, 255, 255))
-    for drawable in spriteList:
+    Renderer.tick=Renderer.tick+1
+    Renderer.screen.fill((255, 255, 255))
+    for drawable in Renderer.spriteList:
         drawable.draw()
     pygame.display.update()
     board.move(-1,0)
@@ -55,7 +54,7 @@ def controlLoop():
     while not error:
         error = error or drawLoop()#todo: add some kind of tick control mechanism
         error = error or gameLoop()#for updating these (for example, update gameLoop 1/3 as often)
-        clock.tick(60)
+        Renderer.clock.tick(60)
 
 #run the code
 init()
