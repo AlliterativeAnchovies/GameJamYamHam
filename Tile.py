@@ -1,5 +1,5 @@
 from Sprite import Sprite
-from Renderer import SPRITE_SIZE,GRID_SIZE,SCREEN_WIDTH,gridList,spriteList,enemyList
+from Renderer import SPRITE_SIZE,GRID_SIZE,SCREEN_WIDTH,gridList,spriteList,enemyList,tileList
 from GridGenerator import generateNewGrid
 from Enemy import Enemy
 import pygame,os
@@ -66,15 +66,16 @@ class Screen:
 		return relevantTile
 
 	def addToScreen(self, grid, x, y):
-		global spriteList
-		tileList = []
+		global spriteList,tileList
+		tilesToPut = []
 		for row in range(len(grid.tiles)):
-			tileList.append([])
+			tilesToPut.append([])
 			for col in range(len(grid.tiles[row])):
 				newTile = grid.tiles[row][col].clone()
 				spriteList.append(newTile)
-				tileList[row].append(newTile)
-		return Grid(tileList, x, y)
+				tilesToPut[row].append(newTile)
+				tileList.append(newTile)
+		return Grid(tilesToPut, x, y)
 
 	def generateInitialScreen(self):
 		gridColsThatFitOnScreen = SCREEN_WIDTH//GRID_PIXEL_SIZE
