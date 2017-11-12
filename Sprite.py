@@ -1,5 +1,5 @@
 #This File Contains The Sprite Class
-from Renderer import screen,SPRITE_SIZE,allSprites
+from Renderer import screen,SPRITE_SIZE,allSprites,tick
 import pygame
 
 class Sprite:
@@ -11,6 +11,7 @@ class Sprite:
     def __init__(self,sprites,locationX,locationY):
         self.sprites = sprites
         self.animationframe = 0
+        self.tickrate = 1
         for state in self.sprites:
             self.curstate = state
             self.cursprite = self.sprites[state][0]#default to first state, first frame
@@ -18,11 +19,16 @@ class Sprite:
             break
         self.px = locationX
         self.py = locationY
+
+    #changes the tickrate
+    def setTickrate(self,t):
+        self.tickrate = t
     #blits to the screen the current sprite at its location
     def draw(self):
         #print(allSprites)
         screen.blit(allSprites[self.cursprite+'.bmp'],(self.px, self.py))
-        self.updateFrame()
+        if (tick%self.tickrate==0):#update animation
+            self.updateFrame()
     #takes in one input, a string which is the name of the state we're changing it to
     def changeState(self,newState):
         self.curstate = self.sprites["newState"]
@@ -38,4 +44,6 @@ class Sprite:
         self.py = newPositionY
 
     def clone(self):
-        return Sprite(self.sprites,self.px, self.py)
+        toReturn = Sprite(self.sprites,self.px, self.py)
+        toReturn.setTickrate(self.tickrate)
+        return toReturn

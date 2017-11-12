@@ -5,7 +5,7 @@
 #but I'm too lazy to do that.
 
 #import Renderer
-from Renderer import spriteList,gridList,loadSprites,screen,clock
+from Renderer import spriteList,gridList,loadSprites,screen,clock,tick
 from Sprite import Sprite
 from Movable import Movable
 from Pickup import Pickup
@@ -28,6 +28,8 @@ def init():
 
 #draw everything
 def drawLoop():
+    global tick
+    tick+=1
     screen.fill((255, 255, 255))
     for drawable in spriteList:
         drawable.draw()
