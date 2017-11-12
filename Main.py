@@ -4,7 +4,7 @@
 #of our actual finished project.  In fact, it should probably be added to a gitignore
 #but I'm too lazy to do that.
 
-from Renderer import screen,size,clock,SPRITE_SIZE,GRID_SIZE
+from Renderer import screen,size,clock,SPRITE_SIZE,GRID_SIZE,spriteList,gridList
 from Sprite import Sprite
 from Movable import Movable
 from Tile import Tile,Grid
@@ -16,8 +16,6 @@ import pygame
 #sprite images are loaded in Renderer.py as allSprites
 #the window is also initialized there
 
-spriteList = []
-gridList = []
 #initialize everything
 def init():
     global spriteList,gridList
