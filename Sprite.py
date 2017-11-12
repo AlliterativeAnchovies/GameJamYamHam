@@ -33,3 +33,6 @@ class Sprite:
     def changePosition(self,newPositionX,newPositionY):
         self.px = newPositionX
         self.py = newPositionY
+
+    def clone():
+        return Sprite(self.sprites,self.locationX, self.locationY)

@@ -4,10 +4,9 @@
 #of our actual finished project.  In fact, it should probably be added to a gitignore
 #but I'm too lazy to do that.
 
-from Renderer import screen,size,clock,SPRITE_SIZE,GRID_SIZE,spriteList,gridList
+import Renderer
 from Sprite import Sprite
 from Movable import Movable
-from Tile import Tile,Grid
 from Pickup import Pickup
 from Enemy import Enemy,initializeEnemies
 from Friendly import Friendly
@@ -17,24 +16,17 @@ import pygame
 #the window is also initialized there
 
 #initialize everything
+
 def init():
     global spriteList,gridList
-    #here we are creating grids.  Grids are 4x4 sets of tiles
-    agrid = []
-    for i in range (GRID_SIZE):
-        agrid.append([])
-        for j in range (GRID_SIZE):
-            dummyspritedict = {"defaultstate":["test"]}
-            dummysprite = Sprite(dummyspritedict,i*SPRITE_SIZE,j*SPRITE_SIZE)
-            spriteList.append(dummysprite)
-            agrid[i].append(dummysprite)
-    gridList.append(Grid(agrid,GRID_SIZE,GRID_SIZE))
+    Renderer.loadSprites()
+    Renderer.loadGrids()
     initializeEnemies()
 
 #draw everything
 def drawLoop():
-    screen.fill((255, 255, 255))
-    for drawable in spriteList:
+    Renderer.screen.fill((255, 255, 255))
+    for drawable in Renderer.spriteList:
         drawable.draw()
     pygame.display.update()
     return False
@@ -47,6 +39,8 @@ def gameLoop():
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_DOWN:
                 gridList[0].move(5,5)
+
+
     return False
 
 
@@ -56,7 +50,7 @@ def controlLoop():
     while not error:
         error = error or drawLoop()#todo: add some kind of tick control mechanism
         error = error or gameLoop()#for updating these (for example, update gameLoop 1/3 as often)
-        clock.tick(60)
+        Renderer.clock.tick(60)
 
 #run the code
 init()

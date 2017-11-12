@@ -1,7 +1,9 @@
 from Sprite import Sprite
-from Renderer import SPRITE_SIZE,GRID_SIZE,SCREEN_WIDTH
+from Renderer import SPRITE_SIZE,GRID_SIZE,SCREEN_WIDTH,allSprites
 from GridGenerator import generateNewGrid
 
+
+GRID_PIXEL_SIZE = (GRID_SIZE*SPRITE_SIZE)
 
 class Tile(Sprite):
     #Tiles are initialized just like Sprites
@@ -13,6 +15,14 @@ class Tile(Sprite):
         self.damage = damage
         self.pickup = None
         self.moveable = None
+
+    def clone(self):
+        toReturn = Sprite.clone(self)
+        toReturn.passable = passable
+        toReturn.damage = damage
+        toReturn.pickup = self.pickup.clone() if self.pickup else None
+        toReturn.moveable = self.moveable.clone() if self.moveable else None
+        return toReturn
 
 class Grid:
     #this represents our 4x4 chunks of tiles
@@ -37,9 +47,28 @@ class Grid:
 
 class Screen:
     def __init__(self):
-        self.gridList = generateGrid()
+        gridColsThatFitOnScreen = SCREEN_WIDTH//GRID_PIXEL_SIZE + 1
+        self.gridList = []
+        for row in range(6): # Should be changed to constant in renderer
+            self.gridList.append([])
+            for col in range(gridColsThatFitOnScreen):
+                leftGrid = self.gridList[row][-1] if len(self.gridList[row]) > 0 else None
+                topGrid = self.gridList[row-1][-1] if row-1 >= 0 else None
+                self.gridList[row].append(generateNewGrid(leftGrid, topGrid))
+
         self.px = 0
         self.py = 0
+
+    def addToScreen(self, grid):
+        tileList = []
+        for row in range(len(grid.tiles)):
+            tileList.append([])
+            for col in range(len(grid.tiles[row])):
+                newTile = grid.tiles[row][col].clone()
+                allSprites.append(newTile)
+                tileList[row].append(newTile)
+
+        return Grid(tileList, grid.positionX, grid.positionY)
 
     def move(self, amountX, amountY):
         self.px += amountX
@@ -48,17 +77,16 @@ class Screen:
         rows = len(self.gridList)
 
         # When the left-most-grid falls off the screen
-        if self.px % (GRID_SIZE*SPRITE_SIZE) == 0:
+        if self.px % GRID_PIXEL_SIZE == 0:
             for row in range(rows):
                 del self.gridList[row][0]
 
         # When the right-most-grid needs to be generated
-        if (self.px + SCREEN_WIDTH) % (GRID_SIZE*SPRITE_SIZE) == 0:
+        if (self.px + SCREEN_WIDTH) % GRID_PIXEL_SIZE == 0:
             for row in range(rows):
                 leftGrid = self.gridList[row][-1]
-                upGrid = self.gridList[row-1][-1] if row-1 >= 0 else None
-                self.gridList[row] = generateNewGrid(leftGrid, topGrid)
-        
+                upGrid = self.gridList[row-1][-1] if rows-1 >= 0 else None
+                self.gridList[row].append(generateNewGrid(leftGrid, topGrid))
         
         for row in range(rows):
             for col in range(len(self.gridList[row])):

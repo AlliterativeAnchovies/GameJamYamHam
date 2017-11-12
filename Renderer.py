@@ -17,6 +17,8 @@ allSprites = {"test":pygame.image.load('resources/images/Base Tile 1.bmp').conve
 spriteList = []
 preGridList = []
 gridList = []
+board = []
+
 def loadSprites():
     getfiles = os.listdir('./resources/images')
     bmpfiles = [x for x in getfiles if x[len(x)-1]=='p']
@@ -25,7 +27,10 @@ def loadSprites():
     for bmp in bmpfiles:
         allSprites[bmp] = 'resources/images/'+bmp+'/.bmp'
 def loadGrids():
-    from Tile import Grid
+    from Tile import Grid, Screen
+
+    board = Screen()
+
     getfiles = os.listdir('./resources/grids')
     bmpfiles = [x for x in getfiles if x[len(x)-1]=='p']
     bmpimages = []
@@ -47,8 +52,7 @@ def loadGrids():
                     tileRow.append(tiletoappend)
             tileList.append(tileRow)
         gridList.append(Grid(tileList,0,0))
-loadSprites()
-loadGrids()
+
 
 #Python is really annoying in how it handles importing global variables.
 #Its impossible as far as I can tell to have all the variables initialized in
