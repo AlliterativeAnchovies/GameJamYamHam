@@ -11,7 +11,7 @@ pygame.init()
 SCREEN_WIDTH, RAW_SCREEN_HEIGHT = pygame.display.Info().current_w, pygame.display.Info().current_h
 SCREEN_HEIGHT = SPRITE_SIZE*GRID_SIZE*6
 size = [SCREEN_WIDTH, SCREEN_HEIGHT]
-screen = pygame.display.set_mode(size,pygame.SRCALPHA, 32)
+screen = pygame.display.set_mode(size,pygame.SRCALPHA,32)
 clock = pygame.time.Clock()
 allSprites = {}
 spriteList = []
@@ -27,6 +27,9 @@ def loadSprites():
     #print(bmpfiles)#to check what got printed
     for bmp in bmpfiles:
         allSprites[bmp] = (pygame.image.load('resources/images/'+bmp)).convert_alpha()
+        print(bmp+" Color:")
+        print(allSprites[bmp].get_at((0,0)))
+        #print(allSprites[bmp].set_at((0,0),(0,0,0,0)))
 
 
 
