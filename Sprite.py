@@ -13,7 +13,7 @@ class Sprite:
         self.animationframe = 0
         for state in self.sprites:
             self.curstate = state
-            self.cursprite = state[0]#default to first state, first frame
+            self.cursprite = self.sprites[state][0]#default to first state, first frame
             break
         self.px = locationX
         self.py = locationY

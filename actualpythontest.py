@@ -16,7 +16,7 @@ while done == False:
 
 	pygame.draw.rect(screen, (0,0,0), (100, 100, 100, 100))
 	dummyspritedict = {"defaultstate":["test"]}
-	spriteList = {[Sprite(dummyspritedict,0,0)]}
+	spriteList = [Sprite(dummyspritedict,0,0)]
 	for sp in spriteList:
 		sp.draw()
 	pygame.display.update()
