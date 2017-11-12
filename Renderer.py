@@ -26,12 +26,6 @@ def loadSprites():
     #print(bmpfiles)#to check what got printed
     for bmp in bmpfiles:
         allSprites[bmp] = 'resources/images/'+bmp+'/.bmp'
-<<<<<<< HEAD
-=======
-def loadGrids():
-    global board
-    from Tile import Grid, Screen
->>>>>>> 4043a1640497390a19e55221a7317d9b1ae57654
 
 
 
