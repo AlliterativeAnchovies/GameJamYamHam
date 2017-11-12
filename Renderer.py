@@ -13,7 +13,7 @@ SCREEN_HEIGHT = SPRITE_SIZE*GRID_SIZE*6
 size = [SCREEN_WIDTH, SCREEN_HEIGHT]
 screen = pygame.display.set_mode(size)
 clock = pygame.time.Clock()
-allSprites = {"test":pygame.image.load('resources/images/Base Tile 1.bmp').convert()}
+allSprites = {"test":pygame.image.load('resources/images/Base Tile 1.bmp').convert_alpha()}
 spriteList = []
 preGridList = []
 gridList = []
@@ -26,7 +26,7 @@ def loadSprites():
     #assuming there is no file that ends in p in resources/images
     #print(bmpfiles)#to check what got printed
     for bmp in bmpfiles:
-        allSprites[bmp] = (pygame.image.load('resources/images/'+bmp)).convert()
+        allSprites[bmp] = (pygame.image.load('resources/images/'+bmp)).convert_alpha()
 
 
 #Python is really annoying in how it handles importing global variables.

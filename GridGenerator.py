@@ -15,9 +15,9 @@ def generateNewGrid(board, left, top, x, y):
         foundGrid = gridsCanBeUpDown(top,fittingGrid) and gridsCanBeLeftRight(left,fittingGrid)
     for row in fittingGrid.tiles:
         for tile in row:
-            if (tile.passable and not tile.damage>0):
+            if random()>0.98 and (tile.passable and not tile.damage>0):
                 enemyToAdd = Enemy.create(0)
-                enemyToAdd.changePosition(tile.px,tile.py)
+                enemyToAdd.changePosition(tile.px+x,tile.py)
     return board.addToScreen(fittingGrid,x,y)
 
 def gridsCanBeLeftRight(a,b):
