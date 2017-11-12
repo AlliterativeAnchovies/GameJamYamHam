@@ -9,6 +9,8 @@ from Sprite import Sprite
 from Movable import Movable
 from Tile import Tile,Grid
 from Pickup import Pickup
+from Enemy import Enemy
+from Friendly import Friendly
 import pygame
 
 #sprite images are loaded in Renderer.py as allSprites
