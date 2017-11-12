@@ -17,7 +17,7 @@ class Tile(Sprite):
         self.moveable = None
 
     def clone(self):
-        toReturn = super(Tile,self).clone()
+        toReturn = Sprite.clone(self)
         toReturn.passable = passable
         toReturn.damage = damage
         toReturn.pickup = self.pickup.clone() if self.pickup else None
