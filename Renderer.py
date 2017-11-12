@@ -45,6 +45,9 @@ def loadGrids():
                     dummyspritedict = {"defaultstate":["Test"]}
                     tiletoappend = Tile(dummyspritedict,0,0,False,True)
                     tileRow.append(tiletoappend)
+                else:
+                    print("Error!  This is not a valid pixel color: ")
+                    print(pixelcolor)
             tileList.append(tileRow)
         gridList.append(Grid(tileList,0,0))
 loadSprites()
