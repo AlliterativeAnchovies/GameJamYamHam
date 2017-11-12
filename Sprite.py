@@ -20,12 +20,12 @@ class Sprite:
     #blits to the screen the current sprite at its location
     def draw(self):
         screen.blit(allSprites[self.cursprite],(self.px, self.py))
-    #takes in one input, a string, which points to its new sprite in spriteDict
+    #takes in one input, a string which is the name of the state we're changing it to
     def changeState(self,newState):
         self.curstate = self.sprites["newState"]
         self.cursprite = self.curstate[0]
         self.animationframe = 0
-
+    #increments the animation frame of the sprite
     def updateFrame(self):
         self.animationframe = (self.animationframe+1)%(len(self.sprites[self.curstate]))
         self.cursprite = self.curstate[animationframe]
