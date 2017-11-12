@@ -5,7 +5,7 @@
 #but I'm too lazy to do that.
 
 #import Renderer
-from Renderer import spriteList,gridList,loadSprites,screen,clock
+from Renderer import spriteList,gridList,loadSprites,screen,clock,board
 from Sprite import Sprite
 from Movable import Movable
 from Pickup import Pickup
@@ -32,6 +32,9 @@ def drawLoop():
     for drawable in spriteList:
         drawable.draw()
     pygame.display.update()
+    if board is not None:
+        print("bdfbd")
+        board.move(-1,0)
     return False
 
 #runs the actual game
