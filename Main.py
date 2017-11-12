@@ -21,14 +21,14 @@ def init():
     global spriteList,gridList
     #here we are creating grids.  Grids are 4x4 sets of tiles
     agrid = []
-    for i in range (0,GRID_SIZE):
+    for i in range (GRID_SIZE):
         agrid.append([])
-        for j in range (0,GRID_SIZE):
+        for j in range (GRID_SIZE):
             dummyspritedict = {"defaultstate":["test"]}
             dummysprite = Sprite(dummyspritedict,i*SPRITE_SIZE,j*SPRITE_SIZE)
             spriteList.append(dummysprite)
             agrid[i].append(dummysprite)
-    gridList.append(Grid(agrid,GRID_SIZE/2,GRID_SIZE/2))
+    gridList.append(Grid(agrid,GRID_SIZE,GRID_SIZE))
 
 #draw everything
 def drawLoop():
