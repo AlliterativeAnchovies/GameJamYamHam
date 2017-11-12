@@ -1,6 +1,6 @@
 from Sprite import Sprite
-from Renderer import SPRITE_SIZE,GRID_SIZE
-from gridGenerator import generateGrid
+from Renderer import SPRITE_SIZE,GRID_SIZE,SCREEN_WIDTH
+from GridGenerator import generateGrid
 
 
 class Tile(Sprite):
@@ -11,6 +11,8 @@ class Tile(Sprite):
         Sprite.__init__(self,sprites,locationX,locationY)
         self.passable = passable
         self.damage = damage
+        self.pickup = None
+        self.moveable = None
 
 class Grid:
     #this represents our 4x4 chunks of tiles
