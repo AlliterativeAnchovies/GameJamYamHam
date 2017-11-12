@@ -9,6 +9,14 @@ class Movable(Sprite):
     self.pvy = 0
     self.follower = None #a Movable is a Snake.  This links to its follower
 
+  def clone(self):
+      toReturn = Sprite.clone(self)
+      toReturn.vx = 0
+      toReturn.vy = 0
+      toReturn.pvx = 0
+      toReturn.pvy = 0
+      return toReturn
+
   def addFollower(self,follower):
     if self.follower is None:
       self.follower = follower

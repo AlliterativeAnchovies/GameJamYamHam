@@ -2,7 +2,10 @@
 from Movable import Movable
 from Renderer import spriteList
 class Friendly(Movable):
-  def __init__(self,sprites,locationX,locationY):
-    Movable.__init__(self,sprites,locationX,locationY)
-    spriteList.append(self)
-    
+    def __init__(self,sprites,locationX,locationY):
+        Movable.__init__(self,sprites,locationX,locationY)
+        spriteList.append(self)
+
+    def clone(self):
+        toReturn = Movable.clone()
+        return toReturn

@@ -25,7 +25,7 @@ def loadSprites():
     for bmp in bmpfiles:
         allSprites[bmp] = 'resources/images/'+bmp+'/.bmp'
 def loadGrids():
-    from Tile import Grid
+    from Tile import Grid,Tile
     getfiles = os.listdir('./resources/grids')
     bmpfiles = [x for x in getfiles if x[len(x)-1]=='p']
     bmpimages = []
@@ -37,11 +37,11 @@ def loadGrids():
             tileRow = []
             for j in range(0,GRID_SIZE):
                 pixelcolor = (relevantPixels[i][j]<<8)>>8 #shifting so that we get rid of alpha values
-                if (pixelcolor<<8==0x00ffffff):
+                if (pixelcolor==0x00ffffff):
                     dummyspritedict = {"defaultstate":["Base Tile 1"]}
                     tiletoappend = Tile(dummyspritedict,0,0,True,False)
                     tileRow.append(tiletoappend)
-                elif (pixelcolor<<8==0x000000):
+                elif (pixelcolor==0x00000000):
                     dummyspritedict = {"defaultstate":["Test"]}
                     tiletoappend = Tile(dummyspritedict,0,0,False,True)
                     tileRow.append(tiletoappend)
