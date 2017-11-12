@@ -6,13 +6,14 @@ from random import random
 def generateNewGrid(board, left, top, x, y):
     global gridList
     # first we need to create the first column.
+
     fittingGrid = gridList[0]
-    foundGrid = False
+    foundGrid = True
     while foundGrid:
         fittingGrid = gridList[random()*len(gridList)]
         foundGrid = gridsCanBeUpDown(top,fittingGrid) and gridsCanBeLeftRight(left,fittingGrid)
-    board.addToScreen(fittingGrid,x,y)
-    return fittingGrid
+    
+    return board.addToScreen(fittingGrid,x,y)
 
 def gridsCanBeLeftRight(a,b):
     thereIsAPath = False

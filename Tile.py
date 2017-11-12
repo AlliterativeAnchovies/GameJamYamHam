@@ -64,7 +64,7 @@ class Screen:
         return Grid(tileList, x, y)
 
     def generateInitialScreen(self):
-        gridColsThatFitOnScreen = SCREEN_WIDTH//GRID_PIXEL_SIZE + 1
+        gridColsThatFitOnScreen = SCREEN_WIDTH//GRID_PIXEL_SIZE
         self.gridList = []
         for row in range(6): # Should be changed to constant in renderer
             self.gridList.append([])
@@ -72,6 +72,8 @@ class Screen:
                 leftGrid = self.gridList[row][-1] if len(self.gridList[row]) > 0 else None
                 topGrid = self.gridList[row-1][-1] if row-1 >= 0 else None
                 self.gridList[row].append(generateNewGrid(self, leftGrid, topGrid, col*GRID_PIXEL_SIZE, row*GRID_PIXEL_SIZE))
+
+
     def move(self, amountX, amountY):
         self.px += amountX
         self.py += amountY
@@ -85,6 +87,7 @@ class Screen:
 
         # When the right-most-grid needs to be generated
         if (self.px + SCREEN_WIDTH) % GRID_PIXEL_SIZE == 0:
+            print("Whoop")
             for row in range(rows):
                 leftGrid = self.gridList[row][-1]
                 upGrid = self.gridList[row-1][-1] if rows-1 >= 0 else None
