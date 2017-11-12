@@ -1,5 +1,5 @@
 #This File Contains The Sprite Class
-from Renderer import blitto,SPRITE_SIZE,allSprites,tick
+from Renderer import blitto,SPRITE_SIZE,allSprites,tick,screen
 import pygame
 
 class Sprite:
@@ -28,7 +28,7 @@ class Sprite:
         #print(allSprites)
         #blitto.blit(allSprites[self.cursprite+'.bmp'],(self.px, self.py),pygame.rect.Rect((0,0,SPRITE_SIZE, SPRITE_SIZE)),pygame.BLEND_RGBA_MAX)#This gives trippy thingy
         #blitto.blit(allSprites[self.cursprite+'.bmp'],(self.px, self.py),pygame.rect.Rect((0,0,SPRITE_SIZE, SPRITE_SIZE)),pygame.BLEND_RGBA_ADD)#This gives fade-to-white
-        blitto.blit(allSprites[self.cursprite+'.bmp'],(self.px, self.py),pygame.rect.Rect((0,0,SPRITE_SIZE, SPRITE_SIZE)),pygame.BLEND_RGBA_MAX)
+        blitto.blit(allSprites[self.cursprite+'.bmp'],(self.px, self.py))
         if ((tick[0])%self.tickrate==0):#update animation
             self.updateFrame()
     #takes in one input, a string which is the name of the state we're changing it to

@@ -32,8 +32,14 @@ def drawLoop():
     Renderer.screen.fill((255, 255, 255))
     for drawable in Renderer.spriteList:
         drawable.draw()
-    Renderer.screen.blit(Renderer.blitto,pygame.rect.Rect(0,0, Renderer.SCREEN_WIDTH, Renderer.SCREEN_HEIGHT))#,pygame.rect.Rect((0,0,Renderer.SCREEN_WIDTH, Renderer.SCREEN_HEIGHT)),pygame.BLEND_RGBA_ADD)
+    Renderer.screen.blit(Renderer.blitto,pygame.rect.Rect(0,0, Renderer.SCREEN_WIDTH, Renderer.SCREEN_HEIGHT))#,pygame.rect.Rect((0,0,Renderer.SCREEN_WIDTH, Renderer.SCREEN_HEIGHT)),pygame.BLEND_RGBA_MULT)
+    screwpython = Renderer.blitto.get_width()
+    for argh in range(screwpython):
+        if Renderer.blitto.get_at((argh,0)).a is not 255:
+            print("Python is everything that is wrong with the world")
     pygame.display.update()
+    Renderer.screen.fill((0,0,0,0))
+    Renderer.blitto.fill((0,0,0,0))
     board.move(-1,0)
     return False
 
