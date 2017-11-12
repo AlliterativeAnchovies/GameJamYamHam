@@ -33,8 +33,8 @@ class Grid:
         self.tiles = tileList
         self.px = positionX
         self.py = positionY
-        for row in range(0,len(self.tiles)):
-            for col in range(0,len(self.tiles[row])):
+        for row in range(len(self.tiles)):
+            for col in range(len(self.tiles[row])):
                 self.tiles[row][col].changePosition(self.px+col*SPRITE_SIZE,self.py+row*SPRITE_SIZE)
         self.px = positionX
 
@@ -43,8 +43,8 @@ class Grid:
     def move(self,amountX,amountY):
        self.px += amountX
        self.py += amountY
-       for row in range(0,len(self.tiles)):
-           for col in range(0,len(self.tiles[row])):
+       for row in range(len(self.tiles)):
+           for col in range(len(self.tiles[row])):
                self.tiles[row][col].changePosition(self.px+col*SPRITE_SIZE,self.py+row*SPRITE_SIZE)
 
 class Screen:
@@ -103,15 +103,15 @@ def loadGrids():
     global board
 
     getfiles = os.listdir('./resources/grids')
-    bmpfiles = [x for x in getfiles if x[len(x)-1]=='p']
+    bmpfiles = [x for x in getfiles if x[-1]=='p']
     bmpimages = []
     for image in bmpfiles:
         relevantImage = pygame.image.load('resources/grids/'+image)
         relevantPixels = pygame.PixelArray(relevantImage)
         tileList = []
-        for i in range(0,GRID_SIZE):
+        for i in range(GRID_SIZE):
             tileRow = []
-            for j in range(0,GRID_SIZE):
+            for j in range(GRID_SIZE):
                 pixelcolor = (relevantPixels[i][j]<<8)>>8 #shifting so that we get rid of alpha values
                 if (pixelcolor==0x00ffffff):
                     dummyspritedict = {"defaultstate":["Base Tile 1"]}

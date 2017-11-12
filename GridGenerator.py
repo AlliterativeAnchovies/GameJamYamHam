@@ -19,7 +19,7 @@ def gridsCanBeLeftRight(a,b):
     if (a is None) or (b is None):
         return True
     thereIsAPath = False
-    for x in range(0,GRID_SIZE):
+    for x in range(GRID_SIZE):
         thereIsAPath = thereIsAPath or (a.tiles[x][GRID_SIZE-1].passable and b.tiles[x][0].passable)
     return thereIsAPath
 
@@ -27,7 +27,7 @@ def gridsCanBeUpDown(a,b):
     if (a is None) or (b is None):
         return True
     thereIsAPath = False
-    for x in range(0,GRID_SIZE):
+    for x in range(GRID_SIZE):
         thereIsAPath = thereIsAPath or (a.tiles[GRID_SIZE-1][x].passable and b.tiles[0][x].passable)
     return thereIsAPath
 
@@ -46,7 +46,7 @@ def tilesInRight(griddy):
     toReturn = 0
     for x in griddy.tiles:
         #this loops through the rows
-        if x[len(x)-1].passable:
+        if x[-1].passable:
             toReturn+=1
     return toReturn
 
@@ -62,7 +62,7 @@ def tilesInTop(griddy):
 #counts passable tiles on bottommost part of grid
 def tilesInBottom(griddy):
     toReturn = 0
-    for x in griddy.tiles[len(griddy.tiles)-1]:
+    for x in griddy.tiles[-1]:
         #this loops through the rows
         if x.passable:
             toReturn+=1
