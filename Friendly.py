@@ -5,3 +5,4 @@ class Friendly(Movable):
   def __init__(self,sprites,locationX,locationY):
     Movable.__init__(self,sprites,locationX,locationY)
     spriteList.append(self)
+    
