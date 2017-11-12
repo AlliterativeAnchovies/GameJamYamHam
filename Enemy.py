@@ -19,7 +19,7 @@ class Enemy(Movable):
       return newEnemy
 
   def clone(self):
-      toReturn = Movable.clone(self)
+      toReturn = super(Enemy,self).clone()
       toReturn.id = id
       toReturn.damage = damage
 

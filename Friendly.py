@@ -7,5 +7,5 @@ class Friendly(Movable):
         spriteList.append(self)
 
     def clone(self):
-        toReturn = Movable.clone()
+        toReturn = super(Friendly,self).clone()
         return toReturn
