@@ -8,19 +8,19 @@ class Movable(Sprite):
     self.pvx = 0 #previous velocity, stored to help out its snake followers
     self.pvy = 0
     self.follower = None #a Movable is a Snake.  This links to its follower
-   
+
   def addFollower(self,follower):
     if self.follower is None:
       self.follower = follower
     else:
       self.follower.addFollower(follower)
-      
+
   def changeVelocity(self,x,y):
     self.pvx = self.vx
     self.pvy = self.vy
     self.vx = x
     self.vy = y
-      
+
   def move(self):
     self.px += self.vx
     self.py += self.vy
@@ -30,3 +30,6 @@ class Movable(Sprite):
       self.pvx = self.vx
       self.pvy = self.vy
     self.follower.move();
+
+  def update():
+      pass
