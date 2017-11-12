@@ -1,5 +1,5 @@
 from Sprite import Sprite
-from Renderer import SPRITE_SIZE,GRID_SIZE,SCREEN_WIDTH,allSprites,gridList,spriteList
+from Renderer import SPRITE_SIZE,GRID_SIZE,SCREEN_WIDTH,gridList,spriteList
 from GridGenerator import generateNewGrid
 import pygame,os
 board = None
