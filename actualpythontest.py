@@ -1,5 +1,8 @@
 from Renderer import screen,size,clock
 from Sprite import Sprite
+from Movable import Movable
+from Tile import Tile
+from Pickup import Pickup
 import pygame
 
 
