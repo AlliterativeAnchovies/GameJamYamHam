@@ -16,15 +16,19 @@ def generateNewGrid(board, left, top, x, y):
     return board.addToScreen(fittingGrid,x,y)
 
 def gridsCanBeLeftRight(a,b):
+    if (a is None) or (b is None):
+        return True
     thereIsAPath = False
     for x in range(0,GRID_SIZE):
-        thereIsAPath = thereIsAPath or a[x][GRID_SIZE-1].passable and b[x][0].passable
+        thereIsAPath = thereIsAPath or (a[x][GRID_SIZE-1].passable and b[x][0].passable)
     return thereIsAPath
 
 def gridsCanBeUpDown(a,b):
+    if (a is None) or (b is None):
+        return True
     thereIsAPath = False
     for x in range(0,GRID_SIZE):
-        thereIsAPath = thereIsAPath or a[GRID_SIZE-1][x].passable and b[0][x].passable
+        thereIsAPath = thereIsAPath or (a[GRID_SIZE-1][x].passable and b[0][x].passable)
     return thereIsAPath
 
 #counts passable tiles on leftmost part of grid
