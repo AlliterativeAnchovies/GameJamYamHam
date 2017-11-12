@@ -27,6 +27,7 @@ def loadSprites():
     #print(bmpfiles)#to check what got printed
     for bmp in bmpfiles:
         allSprites[bmp] = (pygame.image.load('resources/images/'+bmp)).convert_alpha()
+        print(bmp+" Color:")
         print(allSprites[bmp].get_at((0,0)))
         #print(allSprites[bmp].set_at((0,0),(0,0,0,0)))
 
