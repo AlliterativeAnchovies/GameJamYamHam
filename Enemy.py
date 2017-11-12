@@ -30,7 +30,7 @@ class Enemy(Movable):
 		self.behavior(self)
 
 def id0behavior(this):
-	Movable.rawmove(this,1,1)
+	Movable.rawmove(this,0,0)
 
 def initializeEnemies():
 	global enemyArchetypes
