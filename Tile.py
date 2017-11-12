@@ -1,5 +1,5 @@
 from Sprite import Sprite
-from Renderer import SPRITE_SIZE,GRID_SIZE,SCREEN_WIDTH,allSprites
+from Renderer import SPRITE_SIZE,GRID_SIZE,SCREEN_WIDTH,allSprites,gridList,spriteList,board
 from GridGenerator import generateNewGrid
 
 
@@ -73,7 +73,7 @@ class Screen:
     def move(self, amountX, amountY):
         self.px += amountX
         self.py += amountY
-        
+
         rows = len(self.gridList)
 
         # When the left-most-grid falls off the screen
@@ -87,9 +87,34 @@ class Screen:
                 leftGrid = self.gridList[row][-1]
                 upGrid = self.gridList[row-1][-1] if rows-1 >= 0 else None
                 self.gridList[row].append(generateNewGrid(leftGrid, topGrid))
-        
+
         for row in range(rows):
             for col in range(len(self.gridList[row])):
                 self.gridList[row][col].move(amountX, amountY)
 
-                
+
+def loadGrids():
+    global board
+    board = Screen()
+
+    getfiles = os.listdir('./resources/grids')
+    bmpfiles = [x for x in getfiles if x[len(x)-1]=='p']
+    bmpimages = []
+    for image in bmpfiles:
+        relevantImage = pygame.image.load('resources/grids/'+image)
+        relevantPixels = pygame.PixelArray(relevantImage)
+        tileList = []
+        for i in range(0,GRID_SIZE):
+            tileRow = []
+            for j in range(0,GRID_SIZE):
+                pixelcolor = (relevantPixels[i][j]<<8)>>8 #shifting so that we get rid of alpha values
+                if (pixelcolor<<8==0x00ffffff):
+                    dummyspritedict = {"defaultstate":["Base Tile 1"]}
+                    tiletoappend = Tile(dummyspritedict,0,0,True,False)
+                    tileRow.append(tiletoappend)
+                elif (pixelcolor<<8==0x000000):
+                    dummyspritedict = {"defaultstate":["Test"]}
+                    tiletoappend = Tile(dummyspritedict,0,0,False,True)
+                    tileRow.append(tiletoappend)
+            tileList.append(tileRow)
+        gridList.append(Grid(tileList,0,0))

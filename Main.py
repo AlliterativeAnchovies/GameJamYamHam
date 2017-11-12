@@ -4,10 +4,12 @@
 #of our actual finished project.  In fact, it should probably be added to a gitignore
 #but I'm too lazy to do that.
 
-import Renderer
+#import Renderer
+from Renderer import spriteList,gridList,loadSprites,screen
 from Sprite import Sprite
 from Movable import Movable
 from Pickup import Pickup
+from Tile import loadGrids
 from Enemy import Enemy,initializeEnemies
 from Friendly import Friendly
 import pygame
@@ -19,14 +21,14 @@ import pygame
 
 def init():
     global spriteList,gridList
-    Renderer.loadSprites()
-    Renderer.loadGrids()
+    loadSprites()
+    loadGrids()
     initializeEnemies()
 
 #draw everything
 def drawLoop():
-    Renderer.screen.fill((255, 255, 255))
-    for drawable in Renderer.spriteList:
+    screen.fill((255, 255, 255))
+    for drawable in spriteList:
         drawable.draw()
     pygame.display.update()
     return False

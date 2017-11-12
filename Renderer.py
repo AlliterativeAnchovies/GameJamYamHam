@@ -26,32 +26,7 @@ def loadSprites():
     #print(bmpfiles)#to check what got printed
     for bmp in bmpfiles:
         allSprites[bmp] = 'resources/images/'+bmp+'/.bmp'
-def loadGrids():
-    from Tile import Grid, Screen
 
-    board = Screen()
-
-    getfiles = os.listdir('./resources/grids')
-    bmpfiles = [x for x in getfiles if x[len(x)-1]=='p']
-    bmpimages = []
-    for image in bmpfiles:
-        relevantImage = pygame.image.load('resources/grids/'+image)
-        relevantPixels = pygame.PixelArray(relevantImage)
-        tileList = []
-        for i in range(0,GRID_SIZE):
-            tileRow = []
-            for j in range(0,GRID_SIZE):
-                pixelcolor = (relevantPixels[i][j]<<8)>>8 #shifting so that we get rid of alpha values
-                if (pixelcolor<<8==0x00ffffff):
-                    dummyspritedict = {"defaultstate":["Base Tile 1"]}
-                    tiletoappend = Tile(dummyspritedict,0,0,True,False)
-                    tileRow.append(tiletoappend)
-                elif (pixelcolor<<8==0x000000):
-                    dummyspritedict = {"defaultstate":["Test"]}
-                    tiletoappend = Tile(dummyspritedict,0,0,False,True)
-                    tileRow.append(tiletoappend)
-            tileList.append(tileRow)
-        gridList.append(Grid(tileList,0,0))
 
 
 #Python is really annoying in how it handles importing global variables.
