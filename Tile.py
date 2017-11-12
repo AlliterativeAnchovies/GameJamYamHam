@@ -78,11 +78,11 @@ class Screen:
 		return Grid(tilesToPut, x, y)
 
 	def generateInitialScreen(self):
-		gridColsThatFitOnScreen = SCREEN_WIDTH//GRID_PIXEL_SIZE
+		gridColsThatFitOnScreen = (SCREEN_WIDTH//GRID_PIXEL_SIZE)+1
 		self.gridList = []
 		for row in range(6): # Should be changed to constant in renderer
 			self.gridList.append([])
-			for col in range(gridColsThatFitOnScreen+1):
+			for col in range(gridColsThatFitOnScreen):
 				leftGrid = self.gridList[row][-1] if len(self.gridList[row]) > 0 else None
 				topGrid = self.gridList[row-1][-1] if row-1 >= 0 else None
 				self.gridList[row].append(generateNewGrid(self, leftGrid, topGrid, col*GRID_PIXEL_SIZE, row*GRID_PIXEL_SIZE))
@@ -108,7 +108,7 @@ class Screen:
 			for row in range(rows):
 				leftGrid = self.gridList[row][-1]
 				upGrid = self.gridList[row-1][-1] if rows-1 >= 0 else None
-				self.gridList[row].append(generateNewGrid(self,leftGrid, upGrid,SCREEN_WIDTH,row*GRID_PIXEL_SIZE))
+				self.gridList[row].append(generateNewGrid(self,leftGrid, upGrid,((SCREEN_WIDTH//GRID_PIXEL_SIZE)+1)*GRID_PIXEL_SIZE-2*SPRITE_SIZE,row*GRID_PIXEL_SIZE))
 
 		for row in range(rows):
 			for col in range(len(self.gridList[row])):
