@@ -18,6 +18,11 @@ class Enemy(Movable):
       spriteList.append(newEnemy)
       return newEnemy
 
+  def clone(self):
+      toReturn = super(Enemy,self).clone()
+      toReturn.id = id
+      toReturn.damage = damage
+
 def initializeEnemies():
     global enemyArchetypes
     dummyspritedict = {"defaultstate":["test"]}
