@@ -22,6 +22,7 @@ class Sprite:
     def draw(self):
         #print(allSprites)
         screen.blit(allSprites[self.cursprite+'.bmp'],(self.px, self.py))
+        self.updateFrame()
     #takes in one input, a string which is the name of the state we're changing it to
     def changeState(self,newState):
         self.curstate = self.sprites["newState"]
@@ -30,7 +31,7 @@ class Sprite:
     #increments the animation frame of the sprite
     def updateFrame(self):
         self.animationframe = (self.animationframe+1)%(len(self.sprites[self.curstate]))
-        self.cursprite = self.curstate[animationframe]
+        self.cursprite = self.sprites[self.curstate][self.animationframe]
     #teleports the sprite to a new position
     def changePosition(self,newPositionX,newPositionY):
         self.px = newPositionX
