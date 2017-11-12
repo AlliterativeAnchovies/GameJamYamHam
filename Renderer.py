@@ -27,7 +27,9 @@ def loadSprites():
     for bmp in bmpfiles:
         allSprites[bmp] = (pygame.image.load('resources/images/'+bmp)).convert()
 
-
+def dotick():
+    global tick
+    tick=tick+1
 
 #Python is really annoying in how it handles importing global variables.
 #Its impossible as far as I can tell to have all the variables initialized in

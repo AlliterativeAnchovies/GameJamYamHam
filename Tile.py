@@ -124,6 +124,7 @@ def loadGrids():
                 elif (pixelcolor==0x00ff0000):
                     dummyspritedict = {"defaultstate":["FireTile_1","FireTile_2","FireTile_3"]}
                     tiletoappend = Tile(dummyspritedict,0,0,True,True)
+                    tiletoappend.setTickrate(1000)
                     tileRow.append(tiletoappend)
                 else:
                     print("I hate my life")

@@ -27,6 +27,7 @@ class Sprite:
     def draw(self):
         #print(allSprites)
         screen.blit(allSprites[self.cursprite+'.bmp'],(self.px, self.py))
+        print(tick)
         if (tick%self.tickrate==0):#update animation
             self.updateFrame()
     #takes in one input, a string which is the name of the state we're changing it to
