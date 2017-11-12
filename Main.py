@@ -31,7 +31,11 @@ def drawLoop():
 	Renderer.tick.append(Renderer.tick[0]+1)
 	Renderer.tick.pop(0)
 	Renderer.screen.fill((255, 255, 255))
-	for drawable in Renderer.spriteList:
+	for drawable in Renderer.tileList:
+		drawable.draw()
+	for drawable in Renderer.enemyList:
+		drawable.draw()
+	for drawable in Renderer.snekParts:
 		drawable.draw()
 	pygame.display.update()
 	Renderer.screen.fill((0,0,0,0))
@@ -49,7 +53,7 @@ def gameLoop():
 				pygame.K_UP: (0,1),
 				pygame.K_LEFT: (-1,0),
 				pygame.K_RIGHT: (1,0),
-				
+
 				}
 			if event.key in pressMap:
 				Snek.moveSnek(*pressMap[event.key])

@@ -20,6 +20,7 @@ gridList = []
 tick = [0]
 enemyList = []
 snekParts = []
+tileList = []
 
 def loadSprites():
 	getfiles = os.listdir('./resources/images')
