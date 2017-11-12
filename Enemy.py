@@ -4,14 +4,14 @@ from Renderer import spriteList,enemyList
 enemyArchetypes = []
 
 class Enemy(Movable):
-  #takes in the arguments that create movable, as well as an id that
-  #will define the enemy. (enemy's other stats loaded in from text file)
-  #this should NOT be called on the outside
+  	#takes in the arguments that create movable, as well as an id that
+  	#will define the enemy. (enemy's other stats loaded in from text file)
+  	#this should NOT be called on the outside
 	def __init__(self,sprites,locationX,locationY,id,behavior):
 		Movable.__init__(self,sprites,locationX,locationY)
 		self.id = id
 		self.behavior = behavior
-#this should be called to create a new enemy
+	#this should be called to create a new enemy
 	def create(id):
 		global spriteList
 		archetype = enemyArchetypes[id]
@@ -30,11 +30,7 @@ class Enemy(Movable):
 		self.behavior(self)
 
 def id0behavior(this):
-<<<<<<< HEAD
 	Movable.rawmove(this,0,-1)
-=======
-	Movable.rawmove(this,1,1)
->>>>>>> 096999007070764cc7da2cc59d15bda2a8cefd73
 
 def initializeEnemies():
 	global enemyArchetypes

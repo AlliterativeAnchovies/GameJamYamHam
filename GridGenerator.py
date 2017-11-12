@@ -17,11 +17,7 @@ def generateNewGrid(board, left, top, x, y):
 		for tile in row:
 			if random()>0.98 and (tile.passable and not tile.damage>0) and x>SPRITE_SIZE*GRID_SIZE:
 				enemyToAdd = Enemy.create(0)
-<<<<<<< HEAD
 				enemyToAdd.changePosition(tile.px+x,tile.py+y)
-=======
-				enemyToAdd.changePosition(tile.px+x,tile.py)
->>>>>>> 096999007070764cc7da2cc59d15bda2a8cefd73
 	return board.addToScreen(fittingGrid,x,y)
 
 def gridsCanBeLeftRight(a,b):
