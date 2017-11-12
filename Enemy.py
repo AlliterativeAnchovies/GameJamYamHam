@@ -26,8 +26,14 @@ class Enemy(Movable):
 		toReturn.behavior = self.behavior
 		return toReturn
 
+	def update(self):
+		self.behavior(self)
+
+def id0behavior(this):
+	Movable.rawmove(this,1,1)
+
 def initializeEnemies():
 	global enemyArchetypes
 	wizarddict = {"lookingleft":["SRPG_Wizard"]}
-	enemyArchetypes.append(Enemy(wizarddict,0,0,0,None))
+	enemyArchetypes.append(Enemy(wizarddict,0,0,0,id0behavior))
 	enemyArchetypes.append(Enemy(wizarddict,0,0,1,None))

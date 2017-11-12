@@ -53,6 +53,18 @@ class Screen:
 		self.px = 0
 		self.py = 0
 
+	#finds the tile at position x,y
+	def queryScreen(self, x, y):
+		actualx = int(x/SPRITE_SIZE)
+		actualy = int(y/SPRITE_SIZE)
+		gridx = actualx%GRID_SIZE
+		gridy = actualy%GRID_SIZE
+		relevantGrid = self.gridList[gridy][gridx]
+		actualx -= gridx*GRID_SIZE
+		actualy -= gridy*GRID_SIZE
+		relevantTile = relevantGrid[actualy][actualx]
+		return relevantTile
+
 	def addToScreen(self, grid, x, y):
 		global spriteList
 		tileList = []

@@ -46,6 +46,8 @@ def gameLoop():
 			if event.key == pygame.K_DOWN:
 				gridList[0].move(5,5)
 
+	for enemy in Renderer.enemyList:
+		Enemy.update(enemy)
 
 	return False
 
