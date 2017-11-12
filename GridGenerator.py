@@ -8,11 +8,10 @@ def generateNewGrid(board, left, top, x, y):
     # first we need to create the first column.
 
     fittingGrid = gridList[0]
-    foundGrid = True
-    while foundGrid:
+    foundGrid = False
+    while not foundGrid:
         fittingGrid = gridList[int(random()*len(gridList))]
         foundGrid = gridsCanBeUpDown(top,fittingGrid) and gridsCanBeLeftRight(left,fittingGrid)
-        break
 
     return board.addToScreen(fittingGrid,x,y)
 
