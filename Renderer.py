@@ -15,6 +15,7 @@ screen = pygame.display.set_mode(size)
 clock = pygame.time.Clock()
 allSprites = {"test":pygame.image.load('resources/images/Base Tile 1.bmp').convert()}
 spriteList = []
+preGridList = []
 gridList = []
 def loadSprites():
     getfiles = os.listdir('./resources/images')
@@ -23,7 +24,31 @@ def loadSprites():
     #print(bmpfiles)#to check what got printed
     for bmp in bmpfiles:
         allSprites[bmp] = 'resources/images/'+bmp+'/.bmp'
+def loadGrids():
+    from Tile import Grid
+    getfiles = os.listdir('./resources/grids')
+    bmpfiles = [x for x in getfiles if x[len(x)-1]=='p']
+    bmpimages = []
+    for image in bmpfiles:
+        relevantImage = pygame.image.load('resources/grids/'+image)
+        relevantPixels = pygame.PixelArray(relevantImage)
+        tileList = []
+        for i in range(0,GRID_SIZE):
+            tileRow = []
+            for j in range(0,GRID_SIZE):
+                pixelcolor = (relevantPixels[i][j]<<8)>>8 #shifting so that we get rid of alpha values
+                if (pixelcolor<<8==0x00ffffff):
+                    dummyspritedict = {"defaultstate":["Base Tile 1"]}
+                    tiletoappend = Tile(dummyspritedict,0,0,True,False)
+                    tileRow.append(tiletoappend)
+                elif (pixelcolor<<8==0x000000):
+                    dummyspritedict = {"defaultstate":["Test"]}
+                    tiletoappend = Tile(dummyspritedict,0,0,False,True)
+                    tileRow.append(tiletoappend)
+            tileList.append(tileRow)
+        gridList.append(tileList)
 loadSprites()
+loadGrids()
 
 #Python is really annoying in how it handles importing global variables.
 #Its impossible as far as I can tell to have all the variables initialized in
