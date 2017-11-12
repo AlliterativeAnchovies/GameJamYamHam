@@ -23,7 +23,6 @@ def init():
     global spriteList,gridList
     loadSprites()
     loadGrids()
-    print(board)
     initializeEnemies()
     #print(spriteList)
 

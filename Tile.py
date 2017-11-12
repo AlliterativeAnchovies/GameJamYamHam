@@ -123,6 +123,4 @@ def loadGrids():
             tileList.append(tileRow)
         gridList.append(Grid(tileList,0,0))
 
-    #board = Screen()
     board.generateInitialScreen()
-    print(board)
