@@ -26,7 +26,9 @@ class Sprite:
     #blits to the screen the current sprite at its location
     def draw(self):
         #print(allSprites)
-        blitto.blit(allSprites[self.cursprite+'.bmp'],(self.px, self.py))
+        #blitto.blit(allSprites[self.cursprite+'.bmp'],(self.px, self.py),pygame.rect.Rect((0,0,SPRITE_SIZE, SPRITE_SIZE)),pygame.BLEND_RGBA_MAX)#This gives trippy thingy
+        #blitto.blit(allSprites[self.cursprite+'.bmp'],(self.px, self.py),pygame.rect.Rect((0,0,SPRITE_SIZE, SPRITE_SIZE)),pygame.BLEND_RGBA_ADD)#This gives fade-to-white
+        blitto.blit(allSprites[self.cursprite+'.bmp'],(self.px, self.py),pygame.rect.Rect((0,0,SPRITE_SIZE, SPRITE_SIZE)),pygame.BLEND_RGBA_MAX)
         if ((tick[0])%self.tickrate==0):#update animation
             self.updateFrame()
     #takes in one input, a string which is the name of the state we're changing it to

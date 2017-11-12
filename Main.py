@@ -32,7 +32,7 @@ def drawLoop():
     Renderer.screen.fill((255, 255, 255))
     for drawable in Renderer.spriteList:
         drawable.draw()
-    Renderer.screen.blit(Renderer.blitto,pygame.rect.Rect(0,0, Renderer.SCREEN_WIDTH, Renderer.SCREEN_HEIGHT))
+    Renderer.screen.blit(Renderer.blitto,pygame.rect.Rect(0,0, Renderer.SCREEN_WIDTH, Renderer.SCREEN_HEIGHT))#,pygame.rect.Rect((0,0,Renderer.SCREEN_WIDTH, Renderer.SCREEN_HEIGHT)),pygame.BLEND_RGBA_ADD)
     pygame.display.update()
     board.move(-1,0)
     return False
