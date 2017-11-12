@@ -29,6 +29,10 @@ class Movable(Sprite):
         self.vx = x
         self.vy = y
 
+    def rawmove(self,x,y):
+        self.px+=x
+        self.py+=y
+
     def move(self):
         self.px += self.vx
         self.py += self.vy

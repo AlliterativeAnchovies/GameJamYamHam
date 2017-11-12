@@ -1,6 +1,7 @@
 from Sprite import Sprite
-from Renderer import SPRITE_SIZE,GRID_SIZE,SCREEN_WIDTH,gridList,spriteList
+from Renderer import SPRITE_SIZE,GRID_SIZE,SCREEN_WIDTH,gridList,spriteList,enemyList
 from GridGenerator import generateNewGrid
+from Enemy import Enemy
 import pygame,os
 board = None
 GRID_PIXEL_SIZE = (GRID_SIZE*SPRITE_SIZE)
@@ -77,6 +78,9 @@ class Screen:
     def move(self, amountX, amountY):
         self.px += amountX
         self.py += amountY
+
+        for en in enemyList:
+            Enemy.rawmove(en,amountX,amountY)
 
         rows = len(self.gridList)
 

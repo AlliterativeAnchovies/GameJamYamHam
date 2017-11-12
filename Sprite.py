@@ -1,5 +1,5 @@
 #This File Contains The Sprite Class
-from Renderer import screen,SPRITE_SIZE,allSprites,tick
+from Renderer import blitto,SPRITE_SIZE,allSprites,tick
 import pygame
 
 class Sprite:
@@ -26,7 +26,7 @@ class Sprite:
     #blits to the screen the current sprite at its location
     def draw(self):
         #print(allSprites)
-        screen.blit(allSprites[self.cursprite+'.bmp'],(self.px, self.py))
+        blitto.blit(allSprites[self.cursprite+'.bmp'],(self.px, self.py))
         if ((tick[0])%self.tickrate==0):#update animation
             self.updateFrame()
     #takes in one input, a string which is the name of the state we're changing it to
