@@ -1,9 +1,11 @@
 import pygame
-
-pygame.init()
-SPRITE_SIZE = 16
 size = [640, 480]
+SPRITE_SIZE = 16
+pygame.init()
 screen = pygame.display.set_mode(size)
-pygame.display.set_caption('My Game')
 clock = pygame.time.Clock()
 allSprites = {"test":pygame.image.load('resources/images/Test.bmp').convert()}
+
+#Python is really annoying in how it handles importing global variables.
+#Its impossible as far as I can tell to have all the variables initialized in
+#an init(), which really grinds my gears.
