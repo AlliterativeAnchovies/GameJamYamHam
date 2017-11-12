@@ -5,7 +5,7 @@ import pygame
 class Sprite:
     #Takes in:
     #sprites: a dictionary of lists of names of sprites.
-    #   dictionary indexed by state names, like 'looking left','throwing projectile'
+    #   dictipythonary indexed by state names, like 'looking left','throwing projectile'
     #   and contains lists that represent the frames of its animations in that state
     #locationX,Y: position of the sprite
     def __init__(self,sprites,locationX,locationY):
