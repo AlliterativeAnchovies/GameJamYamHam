@@ -27,13 +27,8 @@ def loadSprites():
     #print(bmpfiles)#to check what got printed
     for bmp in bmpfiles:
         allSprites[bmp] = (pygame.image.load('resources/images/'+bmp)).convert_alpha()
-        """#This code proves that it is reading in pixels with alpha values
-        pix = pygame.PixelArray(allSprites[bmp])
-        for x in pix:
-            for y in x:
-                if y>0x00ffffff:#contains alpha
-                    print("Alpha found!")
-        """
+
+
 
 
 #Python is really annoying in how it handles importing global variables.
