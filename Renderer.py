@@ -14,6 +14,16 @@ size = [SCREEN_WIDTH, SCREEN_HEIGHT]
 screen = pygame.display.set_mode(size)
 clock = pygame.time.Clock()
 allSprites = {"test":pygame.image.load('resources/images/Base Tile 1.bmp').convert()}
+spriteList = []
+gridList = []
+def loadSprites():
+    getfiles = os.listdir('./resources/images')
+    bmpfiles = [x for x in getfiles if x[len(x)-1]=='p']
+    #assuming there is no file that ends in p in resources/images
+    #print(bmpfiles)#to check what got printed
+    for bmp in bmpfiles:
+        allSprites[bmp] = 'resources/images/'+bmp+'/.bmp'
+loadSprites()
 
 #Python is really annoying in how it handles importing global variables.
 #Its impossible as far as I can tell to have all the variables initialized in
