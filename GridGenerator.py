@@ -1,5 +1,5 @@
 
 
 
-def generateGrid():
+def generateNewGrid(left, top):
     pass
