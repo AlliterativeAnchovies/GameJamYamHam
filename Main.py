@@ -4,7 +4,7 @@
 #of our actual finished project.  In fact, it should probably be added to a gitignore
 #but I'm too lazy to do that.
 
-from Renderer import screen,size,clock,SPRITE_SIZE
+from Renderer import screen,size,clock,SPRITE_SIZE,GRID_SIZE
 from Sprite import Sprite
 from Movable import Movable
 from Tile import Tile,Grid
@@ -19,15 +19,16 @@ gridList = []
 #initialize everything
 def init():
     global spriteList,gridList
+    #here we are creating grids.  Grids are 4x4 sets of tiles
     agrid = []
-    for i in range (0,4):
+    for i in range (0,GRID_SIZE):
         agrid.append([])
-        for j in range (0,4):
+        for j in range (0,GRID_SIZE):
             dummyspritedict = {"defaultstate":["test"]}
             dummysprite = Sprite(dummyspritedict,i*SPRITE_SIZE,j*SPRITE_SIZE)
             spriteList.append(dummysprite)
             agrid[i].append(dummysprite)
-    gridList.append(Grid(agrid,10,10))
+    gridList.append(Grid(agrid,GRID_SIZE/2,GRID_SIZE/2))
 
 #draw everything
 def drawLoop():

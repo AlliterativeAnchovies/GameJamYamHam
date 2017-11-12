@@ -1,5 +1,5 @@
 from Sprite import Sprite
-from Renderer import SPRITE_SIZE
+from Renderer import SPRITE_SIZE,GRID_SIZE
 
 class Tile(Sprite):
     #Tiles are initialized just like Sprites
@@ -16,7 +16,7 @@ class Grid:
     #and a position (x,y)
     def __init__(self,tileList,positionX,positionY):
         self.tiles = tileList
-        self.px = positionX-SPRITE_SIZE*2
+        self.px = positionX-SPRITE_SIZE*(GRID_SIZE/2)
         self.py = positionY
         for row in range(0,len(self.tiles)):
             for col in range(0,len(self.tiles[row])):
@@ -25,7 +25,7 @@ class Grid:
 
     #moves a grid by its two agruments, (amountX,amountY)
     def move(self,amountX,amountY):
-       self.px += amountX-SPRITE_SIZE*2
+       self.px += amountX-SPRITE_SIZE*(GRID_SIZE/2)
        self.py += amountY
        for row in range(0,len(self.tiles)):
            for col in range(0,len(self.tiles[row])):
