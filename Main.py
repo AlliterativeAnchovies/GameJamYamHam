@@ -13,6 +13,7 @@ from Tile import loadGrids,board
 from Enemy import Enemy,initializeEnemies
 from Friendly import Friendly
 import pygame
+import Snek
 
 #sprite images are loaded in Renderer.py as allSprites
 #the window is also initialized there
@@ -43,8 +44,15 @@ def gameLoop():
 		if event.type == pygame.QUIT:
 			return True
 		if event.type == pygame.KEYDOWN:
-			if event.key == pygame.K_DOWN:
-				gridList[0].move(5,5)
+			pressMap = {
+				pygame.K_DOWN: (0,-1),
+				pygame.K_UP: (0,1),
+				pygame.K_LEFT: (-1,0),
+				pygame.K_RIGHT: (1,0),
+				
+				}
+			if event.key in pressMap:
+				Snek.moveSnek(*pressMap[event.key])
 
 	for enemy in Renderer.enemyList:
 		Enemy.update(enemy)

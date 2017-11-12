@@ -27,6 +27,7 @@
     <Compile Include="Movable.py" />
     <Compile Include="Pickup.py" />
     <Compile Include="Renderer.py" />
+    <Compile Include="Snek.py" />
     <Compile Include="Sprite.py" />
     <Compile Include="Tile.py" />
   </ItemGroup>
