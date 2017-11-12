@@ -17,7 +17,7 @@ allSprites = {"test":pygame.image.load('resources/images/Base Tile 1.bmp').conve
 spriteList = []
 preGridList = []
 gridList = []
-tick = 0
+tick = [0]
 
 def loadSprites():
     getfiles = os.listdir('./resources/images')

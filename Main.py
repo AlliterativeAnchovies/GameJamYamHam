@@ -27,7 +27,8 @@ def init():
 
 #draw everything
 def drawLoop():
-    Renderer.tick=Renderer.tick+1
+    Renderer.tick.append(Renderer.tick[0]+1)
+    Renderer.tick.pop(0)
     Renderer.screen.fill((255, 255, 255))
     for drawable in Renderer.spriteList:
         drawable.draw()
