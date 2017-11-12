@@ -47,19 +47,10 @@ class Grid:
 
 class Screen:
     def __init__(self):
-        gridColsThatFitOnScreen = SCREEN_WIDTH//GRID_PIXEL_SIZE + 1
-        self.gridList = []
-        for row in range(6): # Should be changed to constant in renderer
-            self.gridList.append([])
-            for col in range(gridColsThatFitOnScreen):
-                leftGrid = self.gridList[row][-1] if len(self.gridList[row]) > 0 else None
-                topGrid = self.gridList[row-1][-1] if row-1 >= 0 else None
-                self.gridList[row].append(generateNewGrid(leftGrid, topGrid))
-
         self.px = 0
         self.py = 0
 
-    def addToScreen(self, grid):
+    def addToScreen(self, grid, x, y):
         tileList = []
         for row in range(len(grid.tiles)):
             tileList.append([])
@@ -68,7 +59,17 @@ class Screen:
                 allSprites.append(newTile)
                 tileList[row].append(newTile)
 
-        return Grid(tileList, grid.positionX, grid.positionY)
+        return Grid(tileList, x, y)
+
+    def generateInitialScreen(self):
+        gridColsThatFitOnScreen = SCREEN_WIDTH//GRID_PIXEL_SIZE + 1
+        self.gridList = []
+        for row in range(6): # Should be changed to constant in renderer
+            self.gridList.append([])
+            for col in range(gridColsThatFitOnScreen):
+                leftGrid = self.gridList[row][-1] if len(self.gridList[row]) > 0 else None
+                topGrid = self.gridList[row-1][-1] if row-1 >= 0 else None
+                self.gridList[row].append(generateNewGrid(self, leftGrid, topGrid, col*GRID_PIXEL_SIZE, row*GRID_PIXEL_SIZE))
 
     def move(self, amountX, amountY):
         self.px += amountX
@@ -117,4 +118,6 @@ def loadGrids():
                     tileRow.append(tiletoappend)
             tileList.append(tileRow)
         gridList.append(Grid(tileList,0,0))
+
     board = Screen()
+    board.generateInitialScreen()

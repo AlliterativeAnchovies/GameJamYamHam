@@ -5,7 +5,7 @@
 #but I'm too lazy to do that.
 
 #import Renderer
-from Renderer import spriteList,gridList,loadSprites,screen
+from Renderer import spriteList,gridList,loadSprites,screen,clock
 from Sprite import Sprite
 from Movable import Movable
 from Pickup import Pickup
@@ -52,7 +52,7 @@ def controlLoop():
     while not error:
         error = error or drawLoop()#todo: add some kind of tick control mechanism
         error = error or gameLoop()#for updating these (for example, update gameLoop 1/3 as often)
-        Renderer.clock.tick(60)
+        clock.tick(60)
 
 #run the code
 init()
