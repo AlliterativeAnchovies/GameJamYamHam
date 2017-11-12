@@ -13,7 +13,7 @@ SCREEN_HEIGHT = SPRITE_SIZE*GRID_SIZE*6
 size = [SCREEN_WIDTH, SCREEN_HEIGHT]
 screen = pygame.display.set_mode(size)
 clock = pygame.time.Clock()
-allSprites = {"test":pygame.image.load('resources/images/Test.bmp').convert()}
+allSprites = {"test":pygame.image.load('resources/images/Base Tile 1.bmp').convert()}
 
 #Python is really annoying in how it handles importing global variables.
 #Its impossible as far as I can tell to have all the variables initialized in
