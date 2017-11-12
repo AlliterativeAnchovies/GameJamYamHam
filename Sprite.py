@@ -29,3 +29,7 @@ class Sprite:
     def updateFrame(self):
         self.animationframe = (self.animationframe+1)%(len(self.sprites[self.curstate]))
         self.cursprite = self.curstate[animationframe]
+    #teleports the sprite to a new position
+    def changePosition(self,newPositionX,newPositionY):
+        self.px = newPositionX
+        self.py = newPositionY
