@@ -1,8 +1,8 @@
 from Sprite import Sprite
-from Renderer import SPRITE_SIZE,GRID_SIZE,SCREEN_WIDTH,allSprites,gridList,spriteList,board
+from Renderer import SPRITE_SIZE,GRID_SIZE,SCREEN_WIDTH,allSprites,gridList,spriteList
 from GridGenerator import generateNewGrid
 import pygame,os
-
+board = None
 GRID_PIXEL_SIZE = (GRID_SIZE*SPRITE_SIZE)
 
 class Tile(Sprite):
@@ -94,6 +94,7 @@ class Screen:
             for col in range(len(self.gridList[row])):
                 self.gridList[row][col].move(amountX, amountY)
 
+board = Screen()
 
 def loadGrids():
     global board
@@ -113,7 +114,7 @@ def loadGrids():
                     dummyspritedict = {"defaultstate":["Base Tile 1"]}
                     tiletoappend = Tile(dummyspritedict,0,0,True,False)
                     tileRow.append(tiletoappend)
-                elif (pixelcolor==0x000000):
+                elif (pixelcolor==0x00000000):
                     dummyspritedict = {"defaultstate":["Test"]}
                     tiletoappend = Tile(dummyspritedict,0,0,False,True)
                     tileRow.append(tiletoappend)
@@ -122,6 +123,6 @@ def loadGrids():
             tileList.append(tileRow)
         gridList.append(Grid(tileList,0,0))
 
-    board = Screen()
+    #board = Screen()
     board.generateInitialScreen()
     print(board)

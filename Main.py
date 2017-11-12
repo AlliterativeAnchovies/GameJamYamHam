@@ -5,11 +5,11 @@
 #but I'm too lazy to do that.
 
 #import Renderer
-from Renderer import spriteList,gridList,loadSprites,screen,clock,board
+from Renderer import spriteList,gridList,loadSprites,screen,clock
 from Sprite import Sprite
 from Movable import Movable
 from Pickup import Pickup
-from Tile import loadGrids
+from Tile import loadGrids,board
 from Enemy import Enemy,initializeEnemies
 from Friendly import Friendly
 import pygame
