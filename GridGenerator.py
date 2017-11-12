@@ -1,12 +1,13 @@
 
-from Renderer import screen,size,clock,SPRITE_SIZE,GRID_SIZE,spriteList,gridList,board
+from Renderer import screen,size,clock,SPRITE_SIZE,GRID_SIZE,spriteList,gridList
 from Sprite import Sprite
 from random import random
 
-def generateNewGrid(left, top, x, y):
-    global board, gridList
+def generateNewGrid(board, left, top, x, y):
+    global gridList
     # first we need to create the first column.
     fittingGrid = gridList[0]
+    foundGrid = False
     while foundGrid:
         fittingGrid = gridList[random()*len(gridList)]
         foundGrid = gridsCanBeUpDown(top,fittingGrid) and gridsCanBeLeftRight(left,fittingGrid)
