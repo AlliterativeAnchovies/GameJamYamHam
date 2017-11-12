@@ -10,9 +10,9 @@ def generateNewGrid(board, left, top, x, y):
     fittingGrid = gridList[0]
     foundGrid = True
     while foundGrid:
-        fittingGrid = gridList[random()*len(gridList)]
+        fittingGrid = gridList[int(random()*len(gridList))]
         foundGrid = gridsCanBeUpDown(top,fittingGrid) and gridsCanBeLeftRight(left,fittingGrid)
-    
+
     return board.addToScreen(fittingGrid,x,y)
 
 def gridsCanBeLeftRight(a,b):
