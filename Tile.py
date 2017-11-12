@@ -115,15 +115,15 @@ def loadGrids():
                 pixelcolor = (relevantPixels[i][j]<<8)>>8 #shifting so that we get rid of alpha values
                 if (pixelcolor==0x00ffffff):
                     dummyspritedict = {"defaultstate":["Base Tile 1"]}
-                    tiletoappend = Tile(dummyspritedict,0,0,True,False)
+                    tiletoappend = Tile(dummyspritedict,0,0,True,0)
                     tileRow.append(tiletoappend)
                 elif (pixelcolor==0x00000000):
                     dummyspritedict = {"defaultstate":["Base Wall 1"]}
-                    tiletoappend = Tile(dummyspritedict,0,0,False,True)
+                    tiletoappend = Tile(dummyspritedict,0,0,False,0)
                     tileRow.append(tiletoappend)
                 elif (pixelcolor==0x00ff0000):
                     dummyspritedict = {"defaultstate":["FireTile_1","FireTile_2","FireTile_3"]}
-                    tiletoappend = Tile(dummyspritedict,0,0,True,True)
+                    tiletoappend = Tile(dummyspritedict,0,0,True,1)
                     tiletoappend.setTickrate(10)
                     tileRow.append(tiletoappend)
                 else:

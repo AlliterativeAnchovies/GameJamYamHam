@@ -1,6 +1,7 @@
 
-from Renderer import screen,size,clock,SPRITE_SIZE,GRID_SIZE,spriteList,gridList
+from Renderer import screen,size,clock,SPRITE_SIZE,GRID_SIZE,spriteList,gridList,enemyList
 from Sprite import Sprite
+from Enemy import Enemy
 from random import random
 
 def generateNewGrid(board, left, top, x, y):
@@ -12,7 +13,11 @@ def generateNewGrid(board, left, top, x, y):
     while not foundGrid:
         fittingGrid = gridList[int(random()*len(gridList))]
         foundGrid = gridsCanBeUpDown(top,fittingGrid) and gridsCanBeLeftRight(left,fittingGrid)
-
+    for row in fittingGrid.tiles:
+        for tile in row:
+            if (tile.passable and not tile.damage>0):
+                enemyToAdd = Enemy.create(0)
+                enemyToAdd.changePosition(tile.px,tile.py)
     return board.addToScreen(fittingGrid,x,y)
 
 def gridsCanBeLeftRight(a,b):

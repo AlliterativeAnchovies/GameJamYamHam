@@ -18,6 +18,7 @@ spriteList = []
 preGridList = []
 gridList = []
 tick = [0]
+enemyList = []
 
 def loadSprites():
     getfiles = os.listdir('./resources/images')

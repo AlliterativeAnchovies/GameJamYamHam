@@ -21,8 +21,8 @@ import pygame
 
 def init():
     Renderer.loadSprites()
-    loadGrids()
     initializeEnemies()
+    loadGrids()
     #print(spriteList)
 
 #draw everything
