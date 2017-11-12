@@ -19,8 +19,8 @@ class Sprite:
         self.py = locationY
     #blits to the screen the current sprite at its location
     def draw(self):
-        print(allSprites)
-        screen.blit(allSprites[self.cursprite],(self.px, self.py))
+        #print(allSprites)
+        screen.blit(allSprites[self.cursprite+'.bmp'],(self.px, self.py))
     #takes in one input, a string which is the name of the state we're changing it to
     def changeState(self,newState):
         self.curstate = self.sprites["newState"]

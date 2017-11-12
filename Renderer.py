@@ -25,7 +25,7 @@ def loadSprites():
     #assuming there is no file that ends in p in resources/images
     #print(bmpfiles)#to check what got printed
     for bmp in bmpfiles:
-        allSprites[bmp] = 'resources/images/'+bmp
+        allSprites[bmp] = (pygame.image.load('resources/images/'+bmp)).convert()
 
 
 
