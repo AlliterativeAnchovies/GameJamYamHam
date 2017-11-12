@@ -8,4 +8,5 @@ class Friendly(Movable):
 
 	def clone(self):
 		toReturn = Friendly.clone(self)
+
 		return toReturn
