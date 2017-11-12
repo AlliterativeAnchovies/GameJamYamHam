@@ -27,6 +27,7 @@ def loadSprites():
     for bmp in bmpfiles:
         allSprites[bmp] = 'resources/images/'+bmp+'/.bmp'
 def loadGrids():
+    global board
     from Tile import Grid, Screen
 
     board = Screen()
