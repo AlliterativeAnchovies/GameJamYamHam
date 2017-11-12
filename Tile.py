@@ -124,3 +124,4 @@ def loadGrids():
 
     board = Screen()
     board.generateInitialScreen()
+    print(board)
