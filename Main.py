@@ -9,7 +9,7 @@ from Sprite import Sprite
 from Movable import Movable
 from Tile import Tile,Grid
 from Pickup import Pickup
-from Enemy import Enemy
+from Enemy import Enemy,initializeEnemies
 from Friendly import Friendly
 import pygame
 
@@ -29,6 +29,7 @@ def init():
             spriteList.append(dummysprite)
             agrid[i].append(dummysprite)
     gridList.append(Grid(agrid,GRID_SIZE,GRID_SIZE))
+    initializeEnemies()
 
 #draw everything
 def drawLoop():

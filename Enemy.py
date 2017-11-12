@@ -11,7 +11,6 @@ class Enemy(Movable):
       Movable.__init__(self,sprites,locationX,locationY)
       self.id = id
       self.damage = damage
-      createEnemy(self,id)
   #this should be called to create a new enemy
   def create(id):
       archetype = enemyArchetypes[id]
@@ -22,5 +21,5 @@ class Enemy(Movable):
 def initializeEnemies():
     global enemyArchetypes
     dummyspritedict = {"defaultstate":["test"]}
-    enemyArchetypes[0] = Enemy(dummyspritedict,0,0,0,0)
-    enemyArchetypes[1] = Enemy(dummyspritedict,0,0,1,0)
+    enemyArchetypes.append(Enemy(dummyspritedict,0,0,0,0))
+    enemyArchetypes.append(Enemy(dummyspritedict,0,0,1,0))
