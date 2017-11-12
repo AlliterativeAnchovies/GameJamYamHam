@@ -4,10 +4,10 @@
 #of our actual finished project.  In fact, it should probably be added to a gitignore
 #but I'm too lazy to do that.
 
-from Renderer import screen,size,clock
+from Renderer import screen,size,clock,SPRITE_SIZE
 from Sprite import Sprite
 from Movable import Movable
-from Tile import Tile
+from Tile import Tile,Grid
 from Pickup import Pickup
 import pygame
 
@@ -15,11 +15,19 @@ import pygame
 #the window is also initialized there
 
 spriteList = []
+gridList = []
 #initialize everything
 def init():
-    global spriteList
-    dummyspritedict = {"defaultstate":["test"]}
-    spriteList.append(Sprite(dummyspritedict,0,0))
+    global spriteList,gridList
+    agrid = []
+    for i in range (0,4):
+        agrid.append([])
+        for j in range (0,4):
+            dummyspritedict = {"defaultstate":["test"]}
+            dummysprite = Sprite(dummyspritedict,i*SPRITE_SIZE,j*SPRITE_SIZE)
+            spriteList.append(dummysprite)
+            agrid[i].append(dummysprite)
+    gridList.append(Grid(agrid,10,10))
 
 #draw everything
 def drawLoop():
@@ -34,6 +42,9 @@ def gameLoop():
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             return True
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_DOWN:
+                gridList[0].move(5,5)
     return False
 
 
