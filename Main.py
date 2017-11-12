@@ -32,9 +32,7 @@ def drawLoop():
     for drawable in spriteList:
         drawable.draw()
     pygame.display.update()
-    if board is not None:
-        print("bdfbd")
-        board.move(-1,0)
+    board.move(-1,0)
     return False
 
 #runs the actual game
