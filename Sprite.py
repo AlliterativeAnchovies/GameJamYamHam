@@ -34,5 +34,5 @@ class Sprite:
         self.px = newPositionX
         self.py = newPositionY
 
-    def clone():
+    def clone(self):
         return Sprite(self.sprites,self.locationX, self.locationY)

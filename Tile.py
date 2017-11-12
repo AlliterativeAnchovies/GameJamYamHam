@@ -17,7 +17,7 @@ class Tile(Sprite):
         self.moveable = None
 
     def clone(self):
-        toReturn = Sprite.clone(self)
+        toReturn = super(Tile,self).clone()
         toReturn.passable = passable
         toReturn.damage = damage
         toReturn.pickup = self.pickup.clone() if self.pickup else None
@@ -37,6 +37,7 @@ class Grid:
                 self.tiles[row][col].changePosition(self.px+col*SPRITE_SIZE,self.py+row*SPRITE_SIZE)
         self.px = positionX
 
+
     #moves a grid by its two agruments, (amountX,amountY)
     def move(self,amountX,amountY):
        self.px += amountX
@@ -51,14 +52,14 @@ class Screen:
         self.py = 0
 
     def addToScreen(self, grid, x, y):
+        global spriteList
         tileList = []
         for row in range(len(grid.tiles)):
             tileList.append([])
             for col in range(len(grid.tiles[row])):
                 newTile = grid.tiles[row][col].clone()
-                allSprites.append(newTile)
+                spriteList.append(newTile)
                 tileList[row].append(newTile)
-
         return Grid(tileList, x, y)
 
     def generateInitialScreen(self):
@@ -70,7 +71,6 @@ class Screen:
                 leftGrid = self.gridList[row][-1] if len(self.gridList[row]) > 0 else None
                 topGrid = self.gridList[row-1][-1] if row-1 >= 0 else None
                 self.gridList[row].append(generateNewGrid(self, leftGrid, topGrid, col*GRID_PIXEL_SIZE, row*GRID_PIXEL_SIZE))
-
     def move(self, amountX, amountY):
         self.px += amountX
         self.py += amountY
@@ -108,14 +108,16 @@ def loadGrids():
             tileRow = []
             for j in range(0,GRID_SIZE):
                 pixelcolor = (relevantPixels[i][j]<<8)>>8 #shifting so that we get rid of alpha values
-                if (pixelcolor<<8==0x00ffffff):
+                if (pixelcolor==0x00ffffff):
                     dummyspritedict = {"defaultstate":["Base Tile 1"]}
                     tiletoappend = Tile(dummyspritedict,0,0,True,False)
                     tileRow.append(tiletoappend)
-                elif (pixelcolor<<8==0x000000):
+                elif (pixelcolor==0x000000):
                     dummyspritedict = {"defaultstate":["Test"]}
                     tiletoappend = Tile(dummyspritedict,0,0,False,True)
                     tileRow.append(tiletoappend)
+                else:
+                    print("I hate my life")
             tileList.append(tileRow)
         gridList.append(Grid(tileList,0,0))
 
