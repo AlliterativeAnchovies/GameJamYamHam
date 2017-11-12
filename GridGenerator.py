@@ -1,3 +1,5 @@
+import Renderer
 
 def generateNewGrid(left, top):
-    pass
+    toReturn = Renderer.board.addToScreen(gridList[0])
+    return toReturn
