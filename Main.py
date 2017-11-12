@@ -24,7 +24,7 @@ def init():
     loadSprites()
     loadGrids()
     initializeEnemies()
-    print(spriteList)
+    #print(spriteList)
 
 #draw everything
 def drawLoop():
