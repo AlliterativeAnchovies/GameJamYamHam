@@ -88,7 +88,7 @@ class Screen:
             for row in range(rows):
                 leftGrid = self.gridList[row][-1]
                 upGrid = self.gridList[row-1][-1] if rows-1 >= 0 else None
-                self.gridList[row].append(generateNewGrid(leftGrid, topGrid))
+                self.gridList[row].append(generateNewGrid(self,leftGrid, upGrid,SCREEN_WIDTH-GRID_PIXEL_SIZE,row*GRID_PIXEL_SIZE))
 
         for row in range(rows):
             for col in range(len(self.gridList[row])):
