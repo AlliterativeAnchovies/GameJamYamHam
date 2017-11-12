@@ -1,5 +1,5 @@
 
-from Renderer import screen,size,clock,SPRITE_SIZE,GRID_SIZE,spriteList,gridList
+from Renderer import screen,size,clock,SPRITE_SIZE,GRID_SIZE,spriteList,gridList,board
 from Sprite import Sprite
 
 def generateNewGrid(left, top):

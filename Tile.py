@@ -1,7 +1,7 @@
 from Sprite import Sprite
 from Renderer import SPRITE_SIZE,GRID_SIZE,SCREEN_WIDTH,allSprites,gridList,spriteList,board
 from GridGenerator import generateNewGrid
-
+import pygame,os
 
 GRID_PIXEL_SIZE = (GRID_SIZE*SPRITE_SIZE)
 
@@ -95,7 +95,6 @@ class Screen:
 
 def loadGrids():
     global board
-    board = Screen()
 
     getfiles = os.listdir('./resources/grids')
     bmpfiles = [x for x in getfiles if x[len(x)-1]=='p']
@@ -118,3 +117,4 @@ def loadGrids():
                     tileRow.append(tiletoappend)
             tileList.append(tileRow)
         gridList.append(Grid(tileList,0,0))
+    board = Screen()
