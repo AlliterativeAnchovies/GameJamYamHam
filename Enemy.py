@@ -89,24 +89,33 @@ def noBehavior(this):
 	pass
 
 def id0behavior(this):
+	if len(this.path)==0:
+		return
 	relevantpath = this.path[0][1]
 	if (len(relevantpath)>0):
 		tileon = Tile.Screen.queryScreen(int(this.px),int(this.py))
 		toheadto = relevantpath[this.pathindex]
 		if tileon==toheadto:#arrived at destination, choose new destination
-			this.pathindex+=this.direction
-			if this.pathindex>=len(relevantpath) or this.pathindex<0:#change direction
-				#check if should loop path forward
-				if this.direction==FORWARD and Tile.Tile.adjacent(relevantpath[0],tileon):
-					this.pathindex = 0
-				#check if should loop path backward
-				elif this.direction==BACKWARD and Tile.Tile.adjacent(relevantpath[-1],tileon):
-					this.pathindex = len(this.path)-1
-				#cant loop, turn around
+			if this.path[0][0]:#repeat path
+				this.pathindex+=this.direction
+				if this.pathindex>=len(relevantpath) or this.pathindex<0:#change direction
+					#check if should loop path forward
+					if this.direction==FORWARD and Tile.Tile.adjacent(relevantpath[0],tileon):
+						this.pathindex = 0
+					#check if should loop path backward
+					elif this.direction==BACKWARD and Tile.Tile.adjacent(relevantpath[-1],tileon):
+						this.pathindex = len(this.path)-1
+					#cant loop, turn around
+					else:
+						this.direction*=-1
+						this.pathindex+=2*this.direction
+				toheadto = relevantpath[this.pathindex]
+			else:#move on to the next path
+				this.path.pop(0)
+				if (len(this.path)==0):
+					return
 				else:
-					this.direction*=-1
-					this.pathindex+=2*this.direction
-			toheadto = relevantpath[this.pathindex]
+					toheadto = this.path[0][1][0]
 		deltx = toheadto.px-this.px
 		delty = toheadto.py-this.py
 		if abs(deltx)>abs(delty) and deltx is not 0:
@@ -175,7 +184,7 @@ def id0initial(this):
 		if DebugDefines.SHOW_ENEMY_PATHS:
 			for c in patharoundwall:
 				c.changeState("debug")
-		this.path = [[True,patharoundwall]]
+		this.path = [[False,[closestwall]],[True,patharoundwall]]
 		this.pathindex = 0
 		this.direction = FORWARD
 
