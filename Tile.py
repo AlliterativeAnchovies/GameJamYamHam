@@ -5,6 +5,7 @@ import pygame,os
 from Enemy import Enemy
 board = None
 GRID_PIXEL_SIZE = (GRID_SIZE*SPRITE_SIZE)
+EXCESS_GRIDS = 5
 
 class Tile(Sprite):
 	#Tiles are initialized just like Sprites
@@ -195,7 +196,7 @@ class Screen:
 		self.gridList = []
 		for row in range(6): # Should be changed to constant in renderer
 			self.gridList.append([])
-			for col in range(gridColsThatFitOnScreen):
+			for col in range(gridColsThatFitOnScreen+EXCESS_GRIDS):
 				leftGrid = self.gridList[row][-1] if len(self.gridList[row]) > 0 else None
 				topGrid = self.gridList[row-1][-1] if row-1 >= 0 else None
 				self.gridList[row].append(generateNewGrid(self, leftGrid, topGrid, col*GRID_PIXEL_SIZE, row*GRID_PIXEL_SIZE))
@@ -221,7 +222,7 @@ class Screen:
 			for row in range(rows):
 				leftGrid = self.gridList[row][-1]
 				upGrid = self.gridList[row-1][-1] if rows-1 >= 0 else None
-				self.gridList[row].append(generateNewGrid(self,leftGrid, upGrid,((SCREEN_WIDTH//GRID_PIXEL_SIZE)+1)*GRID_PIXEL_SIZE-2*SPRITE_SIZE,row*GRID_PIXEL_SIZE))
+				self.gridList[row].append(generateNewGrid(self,leftGrid, upGrid,((SCREEN_WIDTH//GRID_PIXEL_SIZE)+1)*GRID_PIXEL_SIZE-2*SPRITE_SIZE+EXCESS_GRIDS*GRID_PIXEL_SIZE,row*GRID_PIXEL_SIZE))
 
 		for row in range(rows):
 			for col in range(len(self.gridList[row])):
