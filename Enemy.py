@@ -2,7 +2,10 @@
 from Movable import Movable
 import Tile
 from Renderer import spriteList,enemyList,enemiesToInit
+import math
 enemyArchetypes = []
+FORWARD = True
+BACKWARD = False
 
 class Enemy(Movable):
   	#takes in the arguments that create movable, as well as an id that
@@ -13,6 +16,9 @@ class Enemy(Movable):
 		self.id = id
 		self.behavior = behavior
 		self.initial = initial
+		self.path = []
+		self.pathindex = 0
+		self.direction = FORWARD
 	#this should be called to create a new enemy
 	def create(id):
 		global spriteList
@@ -30,6 +36,15 @@ class Enemy(Movable):
 		toReturn.initial = self.initial
 		return toReturn
 
+	def getPath(self):
+		return self.path
+
+	def getPathIndex(self):
+		return self.pathindex
+
+	def getDirection(self):
+		return self.direction
+
 	#performs its initial function
 	def finish_init(self):
 		self.initial(self)
@@ -42,6 +57,7 @@ def noBehavior(this):
 	pass
 
 def id0behavior(this):
+	"""
 	#head right if possible
 	top = Tile.Screen.queryScreen(this.px,this.py-16)
 	bottom = Tile.Screen.queryScreen(this.px,this.py+16)
@@ -49,6 +65,17 @@ def id0behavior(this):
 	right = Tile.Screen.queryScreen(this.px+16,this.py)
 	if (right is not None and Tile.Tile.isNice(right)):
 		Movable.rawmove(this,0,0)
+	"""
+	if (len(Enemy.getPath(this))>0):
+		toheadto = Enemy.getPath(this)[Enemy.getPathIndex(this)]
+		deltx = toheadto.px-this.px
+		delty = toheadto.py-this.py
+		mag = math.sqrt(deltx*deltx+delty*delty)
+		if mag>0:
+			deltx/=mag
+			delty/=mag
+			Movable.changeVelocity(this,deltx,delty)
+
 
 def id0initial(this):
 	#here, our goal is to find the closest 'wall' and then
@@ -91,7 +118,11 @@ def id0initial(this):
 			patharoundwall.append(possibilities[0])
 			lastadjacent = possibilities[0]
 		for c in patharoundwall:
-			c.changeState("debug")
+			#c.changeState("debug")
+			pass
+		this.path = patharoundwall
+		this.pathindex = 0
+		this.direction = FORWARD
 
 
 def initializeEnemies():
