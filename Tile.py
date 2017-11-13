@@ -71,16 +71,16 @@ class Screen:
 		right = self.querySpecificScreen(x+16,y)
 		if not (top is None or top in searched) and condition(top):
 			searched.append(top)
-			searched = self.fillFindInternal(x,y,condition,searched)
+			searched = self.fillFindInternal(x,y-16,condition,searched)
 		if not (bottom is None or bottom in searched) and condition(bottom):
 			searched.append(bottom)
-			searched = self.fillFindInternal(x,y,condition,searched)
+			searched = self.fillFindInternal(x,y+16,condition,searched)
 		if not (left is None or left in searched) and condition(left):
 			searched.append(left)
-			searched = self.fillFindInternal(x,y,condition,searched)
+			searched = self.fillFindInternal(x-16,y,condition,searched)
 		if not (right is None or right in searched) and condition(right):
 			searched.append(right)
-			searched = self.fillFindInternal(x,y,condition,searched)
+			searched = self.fillFindInternal(x+16,y,condition,searched)
 		return searched
 		pass
 	#finds closest tile on board that satisfies a condition
