@@ -4,6 +4,7 @@ import Tile
 from Renderer import spriteList,enemyList,enemiesToInit,enemyNames
 import math
 from random import choice
+import DebugDefines
 enemyArchetypes = []
 FORWARD = 1
 BACKWARD = -1
@@ -30,7 +31,8 @@ class Enemy(Movable):
 		spriteList.append(newEnemy)
 		enemyList.append(newEnemy)
 		enemiesToInit.append(newEnemy)
-		print(newEnemy.name + " was born.")
+		if DebugDefines.PRINT_ENEMY_BIRTHS:
+			print(newEnemy.name + " was born.")
 		return newEnemy
 
 	def clone(self):
@@ -142,9 +144,8 @@ def id0initial(this):
 			if (c4 is not None and Tile.Tile.isNice(c4)):
 				walltohugadjacencies.append(c4)
 		walltohugadjacencies = list(set(walltohugadjacencies))#remove duplicates
-		for b in walltohugadjacencies:
+		#for b in walltohugadjacencies:
 			#b.changeState("debug")
-			pass
 		closestadjacent = walltohugadjacencies[0]#later on we'll add a calculation here
 		lastadjacent = closestadjacent
 		patharoundwall = []
@@ -155,9 +156,9 @@ def id0initial(this):
 				break
 			patharoundwall.append(possibilities[0])
 			lastadjacent = possibilities[0]
-		for c in patharoundwall:
-			c.changeState("debug")
-			pass
+		if DebugDefines.SHOW_ENEMY_PATHS:
+			for c in patharoundwall:
+				c.changeState("debug")
 		this.path = patharoundwall
 		this.pathindex = 0
 		this.direction = FORWARD
