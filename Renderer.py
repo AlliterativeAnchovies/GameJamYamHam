@@ -23,6 +23,7 @@ snekParts = []
 tileList = []
 enemiesToInit = []
 enemyNames = []
+enemyLastNames = []
 
 def loadSprites():
 	getfiles = os.listdir('./resources/images')
@@ -37,6 +38,7 @@ def loadSprites():
 
 def loadNames():
 	enemyNames.extend(open('resources/text/names.txt','r').read().split("\n"))
+	enemyLastNames.extend(open('resources/text/lastnames.txt','r').read().split("\n"))
 
 
 #Python is really annoying in how it handles importing global variables.
