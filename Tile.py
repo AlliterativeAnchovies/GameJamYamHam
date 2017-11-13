@@ -62,8 +62,26 @@ class Screen:
 	#returns a list of all tiles touching the tile at (x,y), [including
 	#the tile at x,y], that satisfy condition
 	def fillFind(x,y,condition):
-		return board.fillFindInternal(x,y,condition)
-	def fillFindInternal(self,x,y,condition):
+		return board.fillFindInternal(x,y,condition,[board.querySpecificScreen(x,y)])
+	def fillFindInternal(self,x,y,condition,searched):
+		#you should not call this method - use fillFind instead
+		top = self.querySpecificScreen(x,y-16)
+		bottom = self.querySpecificScreen(x,y+16)
+		left = self.querySpecificScreen(x-16,y)
+		right = self.querySpecificScreen(x+16,y)
+		if not (top is None or top in searched) and condition(top):
+			searched.append(top)
+			searched = self.fillFindInternal(x,y,condition,searched)
+		if not (bottom is None or bottom in searched) and condition(bottom):
+			searched.append(bottom)
+			searched = self.fillFindInternal(x,y,condition,searched)
+		if not (left is None or left in searched) and condition(left):
+			searched.append(left)
+			searched = self.fillFindInternal(x,y,condition,searched)
+		if not (right is None or right in searched) and condition(right):
+			searched.append(right)
+			searched = self.fillFindInternal(x,y,condition,searched)
+		return searched
 		pass
 	#finds closest tile on board that satisfies a condition
 	#condition(None)=True cause this to return None if it reaches

@@ -55,9 +55,12 @@ def id0initial(this):
 	#create a path that 'circles' it.  Then id0behavior will
 	#just have the enemy follow that path.
 	condition = lambda tile: tile is not None and not tile.passable
-	tilefound = (Tile.Screen.findClosest(this.px,this.py,condition))
-	if tilefound is not None:
-		tilefound.changeState("debug")
+	closestwall = (Tile.Screen.findClosest(this.px,this.py,condition))
+	if closestwall is not None:
+		closestwall.changeState("debug")
+		walltohug = Tile.Screen.fillFind(closestwall.px,closestwall.py,condition)
+		for a in walltohug:
+			a.changeState("debug")
 	pass
 
 def initializeEnemies():
