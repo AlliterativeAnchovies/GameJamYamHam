@@ -79,7 +79,7 @@ def id0behavior(this):
 		deltx = toheadto.px-this.px
 		delty = toheadto.py-this.py
 		mag = math.sqrt(deltx*deltx+delty*delty)
-		if mag>0:
+		if mag>0:#avoid divide by zero
 			deltx/=mag
 			delty/=mag
 			Movable.changeVelocity(this,deltx,delty)
