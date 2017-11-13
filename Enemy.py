@@ -145,7 +145,7 @@ def id0initial(this):
 		lastadjacent = closestadjacent
 		patharoundwall = []
 		while True:
-			isvalid = lambda tile: (Tile.Tile.loosely_adjacent(tile,lastadjacent) and not (tile in patharoundwall))
+			isvalid = lambda tile: (Tile.Tile.adjacent(tile,lastadjacent) and not (tile in patharoundwall))
 			possibilities = [x for x in walltohugadjacencies if isvalid(x)]
 			if len(possibilities)==0:
 				break
