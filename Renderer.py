@@ -21,6 +21,7 @@ tick = [0]
 enemyList = []
 snekParts = []
 tileList = []
+enemiesToInit = []
 
 def loadSprites():
 	getfiles = os.listdir('./resources/images')

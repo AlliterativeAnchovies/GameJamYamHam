@@ -58,6 +58,9 @@ def gameLoop():
 			if event.key in pressMap:
 				Snek.moveSnek(*pressMap[event.key])
 
+	for enemy in Renderer.enemiesToInit:
+		Enemy.finish_init(enemy)
+	enemiesToInit = []
 	for enemy in Renderer.enemyList:
 		Enemy.update(enemy)
 

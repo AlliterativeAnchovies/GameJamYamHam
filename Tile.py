@@ -91,13 +91,13 @@ class Screen:
 		#look in a spiral
 		while tileschecked<tilestocheck:
 			if directionLooking is UP:
-				y-=16
+				y-=SPRITE_SIZE
 			elif directionLooking is DOWN:
-				y+=16
+				y+=SPRITE_SIZE
 			elif directionLooking is LEFT:
-				x-=16
+				x-=SPRITE_SIZE
 			elif directionLooking is RIGHT:
-				x+=16
+				x+=SPRITE_SIZE
 			tileSearching = self.querySpecificScreen(x,y)
 			if condition(tileSearching):
 				return tileSearching
@@ -214,7 +214,7 @@ def loadGrids():
 					tiletoappend = Tile(dummyspritedict,0,0,False,0)
 					tileRow.append(tiletoappend)
 				elif (pixelcolor==0x00ff0000):
-					dummyspritedict = {"defaultstate":["FireTile_1","FireTile_2","FireTile_3"]}
+					dummyspritedict = {"defaultstate":["FireTile_1","FireTile_2","FireTile_3"],"debug":["Corner"]}
 					tiletoappend = Tile(dummyspritedict,0,0,True,1)
 					tiletoappend.setTickrate(10)
 					tileRow.append(tiletoappend)

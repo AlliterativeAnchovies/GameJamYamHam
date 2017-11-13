@@ -1,7 +1,7 @@
 #Enemy are baddies that do bad stuff beccause they're mean.
 from Movable import Movable
 import Tile
-from Renderer import spriteList,enemyList
+from Renderer import spriteList,enemyList,enemiesToInit
 enemyArchetypes = []
 
 class Enemy(Movable):
@@ -14,14 +14,13 @@ class Enemy(Movable):
 		self.behavior = behavior
 		self.initial = initial
 	#this should be called to create a new enemy
-	def create(id,x,y):
+	def create(id):
 		global spriteList
 		archetype = enemyArchetypes[id]
 		newEnemy = Enemy.clone(archetype)
 		spriteList.append(newEnemy)
 		enemyList.append(newEnemy)
-		newEnemy.changePosition(x,y)
-		newEnemy.initial(newEnemy)
+		enemiesToInit.append(newEnemy)
 		return newEnemy
 
 	def clone(self):
@@ -30,6 +29,10 @@ class Enemy(Movable):
 		toReturn.behavior = self.behavior
 		toReturn.initial = self.initial
 		return toReturn
+
+	#performs its initial function
+	def finish_init(self):
+		self.initial(self)
 
 	def update(self):
 		self.behavior(self)
