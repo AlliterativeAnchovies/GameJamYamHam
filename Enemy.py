@@ -60,7 +60,7 @@ class Enemy(Movable):
 
 	def update(self):
 		self.behavior(self)
-		Movable.move(self)
+		#Movable.move(self)
 		#(Tile.Screen.queryScreen(self.px,self.py)).changeState("teststate")
 
 def noBehavior(this):
@@ -78,13 +78,16 @@ def id0behavior(this):
 			toheadto = this.path[this.pathindex]
 		deltx = toheadto.px-this.px
 		delty = toheadto.py-this.py
-		mag = math.sqrt(deltx*deltx+delty*delty)
-		if mag>0:#avoid divide by zero
-			deltx/=mag
-			delty/=mag
-			Movable.changeVelocity(this,deltx,delty)
-		else:#stay still if at target
-			Movable.changeVelocity(this,0,0)
+		if abs(deltx)>abs(delty) and deltx is not 0:
+			deltx = deltx/abs(deltx)
+			delty = 0
+		elif delty is not 0:
+			delty = delty/abs(delty)
+			deltx = 0
+		else:
+			deltx = 0
+			delty = 0
+		Movable.movesnap(this,deltx,delty)
 
 
 def id0initial(this):
