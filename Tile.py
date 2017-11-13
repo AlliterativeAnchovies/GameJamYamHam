@@ -72,7 +72,7 @@ class Screen:
 		#find what grid its on
 		gridx = x//(GRID_PIXEL_SIZE)
 		gridy = y//(GRID_PIXEL_SIZE)
-		if gridx not in range(len(self.gridList)) or gridy not in range(len(self.gridList[gridx])):
+		if (gridy not in range(len(self.gridList))) or (gridx not in range(len(self.gridList[gridy]))):
 			return None
 		relevantGrid = self.gridList[gridy][gridx]
 		#shift x,y to be relative to this grid
@@ -82,7 +82,7 @@ class Screen:
 		x = x//SPRITE_SIZE
 		y = y//SPRITE_SIZE
 		#get relevant tile
-		if x not in range(len(relevantGrid.tiles)) or y not in range(len(relevantGrid.tiles[x])):
+		if y not in range(len(relevantGrid.tiles)) or x not in range(len(relevantGrid.tiles[y])):
 			return None
 		relevantTile = relevantGrid.tiles[y][x]
 		return relevantTile
