@@ -76,8 +76,23 @@ def id0initial(this):
 				walltohugadjacencies.append(left)
 			if (right is not None and Tile.Tile.isNice(right)):
 				walltohugadjacencies.append(right)
+		walltohugadjacencies = list(set(walltohugadjacencies))#remove duplicates
 		for b in walltohugadjacencies:
-			b.changeState("debug")
+			#b.changeState("debug")
+			pass
+		closestadjacent = walltohugadjacencies[0]#later on we'll add a calculation here
+		lastadjacent = closestadjacent
+		patharoundwall = []
+		while True:
+			isvalid = lambda tile: (Tile.Tile.loosely_adjacent(tile,lastadjacent) and not (tile in patharoundwall))
+			possibilities = [x for x in walltohugadjacencies if isvalid(x)]
+			if len(possibilities)==0:
+				break
+			patharoundwall.append(possibilities[0])
+			lastadjacent = possibilities[0]
+		for c in patharoundwall:
+			c.changeState("debug")
+
 
 def initializeEnemies():
 	global enemyArchetypes

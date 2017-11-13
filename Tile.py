@@ -17,6 +17,26 @@ class Tile(Sprite):
 		self.pickup = None
 		self.moveable = None
 
+	#if 2 tiles have touching edges
+	def adjacent(a,b):
+		top = Screen.queryScreen(a.px,a.py-16)
+		bottom = Screen.queryScreen(a.px,a.py+16)
+		left = Screen.queryScreen(a.px-16,a.py)
+		right = Screen.queryScreen(a.px+16,a.py)
+		return b is top or b is bottom or b is left or b is right
+
+	#if adjacent by edges or vertices
+	def loosely_adjacent(a,b):
+		top = Screen.queryScreen(a.px,a.py-16)
+		bottom = Screen.queryScreen(a.px,a.py+16)
+		left = Screen.queryScreen(a.px-16,a.py)
+		right = Screen.queryScreen(a.px+16,a.py)
+		c1 = Screen.queryScreen(a.px-16,a.py-16)
+		c2 = Screen.queryScreen(a.px-16,a.py+16)
+		c3 = Screen.queryScreen(a.px+16,a.py+16)
+		c4 = Screen.queryScreen(a.px+16,a.py-16)
+		return b is top or b is bottom or b is left or b is right or b is c1 or b is c2 or b is c3 or b is c4
+
 	def clone(self):
 
 		toReturn = Sprite.clone(self)
