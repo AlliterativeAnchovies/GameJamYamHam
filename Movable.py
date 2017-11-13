@@ -1,4 +1,5 @@
 from Sprite import Sprite
+from Renderer import SPRITE_SIZE
 
 class Movable(Sprite):
 	def __init__(self,sprites,locationX,locationY):
@@ -53,14 +54,17 @@ class Movable(Sprite):
 			print("Error: May not move more than 1 space at a time")
 		else:
 			if self.movingto is not None:
-				self.backlog = Tile.Screen.queryScreen(self.px,self.py)
+				self.backlog = Tile.Screen.queryScreen(int(self.px+x*SPRITE_SIZE),int(self.py+y*SPRITE_SIZE))
 			else:
-				self.movingto = Tile.Screen.queryScreen(self.px,self.py)
+				self.movingto = Tile.Screen.queryScreen(int(self.px+x*SPRITE_SIZE),int(self.py+y*SPRITE_SIZE))
 
 	def draw(self):
-		offx = int((movingto.px-self.px)*self.smoothtransitioncounter)
-		offy = int((movingto.py-self.py)*self.smoothtransitioncounter)
-		Sprite.draw_with_offset(self,offx,offy)
+		if self.movingto is not None:
+			offx = int((self.movingto.px-self.px)*self.smoothtransitioncounter)
+			offy = int((self.movingto.py-self.py)*self.smoothtransitioncounter)
+			Sprite.draw_with_offset(self,offx,offy)
+		else:
+			Sprite.draw(self)
 
 	"""
 	def move(self):
@@ -75,7 +79,7 @@ class Movable(Sprite):
 			self.follower.move();
 	"""
 
-	def update():
+	def update(self):
 		if (self.movingto is not None):
 			self.smoothtransitioncounter+=0.1
 			if (self.smoothtransitioncounter>=1):

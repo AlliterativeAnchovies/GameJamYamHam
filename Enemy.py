@@ -59,6 +59,7 @@ class Enemy(Movable):
 		return self.inited
 
 	def update(self):
+		Movable.update(self)
 		self.behavior(self)
 		#Movable.move(self)
 		#(Tile.Screen.queryScreen(self.px,self.py)).changeState("teststate")

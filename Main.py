@@ -9,7 +9,7 @@ import Renderer
 from Sprite import Sprite
 from Movable import Movable
 from Pickup import Pickup
-from Tile import loadGrids,board
+from Tile import loadGrids,board,Tile
 from Enemy import Enemy,initializeEnemies
 from Friendly import Friendly
 import pygame
@@ -32,11 +32,11 @@ def drawLoop():
 	Renderer.tick.pop(0)
 	Renderer.screen.fill((255, 255, 255))
 	for drawable in Renderer.tileList:
-		drawable.draw()
+		Tile.draw(drawable)
 	for drawable in Renderer.enemyList:
-		drawable.draw()
+		Enemy.draw(drawable)
 	for drawable in Renderer.snekParts:
-		drawable.draw()
+		Friendly.draw(drawable)
 	pygame.display.update()
 	Renderer.screen.fill((0,0,0,0))
 	board.move(-1,0)
