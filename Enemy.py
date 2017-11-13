@@ -4,8 +4,8 @@ import Tile
 from Renderer import spriteList,enemyList,enemiesToInit
 import math
 enemyArchetypes = []
-FORWARD = True
-BACKWARD = False
+FORWARD = 1
+BACKWARD = -1
 
 class Enemy(Movable):
   	#takes in the arguments that create movable, as well as an id that
@@ -68,7 +68,14 @@ def noBehavior(this):
 
 def id0behavior(this):
 	if (len(this.path)>0):
+		tileon = Tile.Screen.queryScreen(int(this.px),int(this.py))
 		toheadto = this.path[this.pathindex]
+		if tileon==toheadto:#arrived at destination, choose new destination
+			this.pathindex+=this.direction
+			if this.pathindex>=len(this.path) or this.pathindex<0:#change direction
+				this.direction*=-1
+				this.pathindex+=2*this.direction
+			toheadto = this.path[this.pathindex]
 		deltx = toheadto.px-this.px
 		delty = toheadto.py-this.py
 		mag = math.sqrt(deltx*deltx+delty*delty)
