@@ -140,7 +140,7 @@ def id0initial(this):
 			patharoundwall.append(possibilities[0])
 			lastadjacent = possibilities[0]
 		for c in patharoundwall:
-			c.changeState("debug")
+			#c.changeState("debug")
 			pass
 		this.path = patharoundwall
 		this.pathindex = 0
