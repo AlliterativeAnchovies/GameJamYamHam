@@ -71,6 +71,7 @@ def gameLoop():
 	return False
 
 
+DRAW_TO_GAME_RATIO = 1#ratio of draw updates to game updates
 #controls the flow of the program
 def controlLoop():
 	error = False
