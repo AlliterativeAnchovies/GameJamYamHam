@@ -14,12 +14,14 @@ class Enemy(Movable):
 		self.behavior = behavior
 		self.initial = initial
 	#this should be called to create a new enemy
-	def create(id):
+	def create(id,x,y):
 		global spriteList
 		archetype = enemyArchetypes[id]
 		newEnemy = Enemy.clone(archetype)
 		spriteList.append(newEnemy)
 		enemyList.append(newEnemy)
+		newEnemy.changePosition(x,y)
+		newEnemy.initial(newEnemy)
 		return newEnemy
 
 	def clone(self):
@@ -27,7 +29,6 @@ class Enemy(Movable):
 		toReturn.id = self.id
 		toReturn.behavior = self.behavior
 		toReturn.initial = self.initial
-		toReturn.initial(toReturn)
 		return toReturn
 
 	def update(self):
