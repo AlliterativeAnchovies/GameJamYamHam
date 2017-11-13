@@ -45,7 +45,7 @@ def id0behavior(this):
 	left = Tile.Screen.queryScreen(this.px-16,this.py)
 	right = Tile.Screen.queryScreen(this.px+16,this.py)
 	if (right is not None and Tile.Tile.isNice(right)):
-		Movable.rawmove(this,1,0)
+		Movable.rawmove(this,0,0)
 
 def id0initial(this):
 	#here, our goal is to find the closest 'wall' and then
