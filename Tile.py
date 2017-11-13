@@ -109,6 +109,7 @@ class Screen:
 				if directionLooking is LEFT or directionLooking is RIGHT:
 					spiralLength+=1
 				directionLooking = (directionLooking+1)%4
+		return None
 
 
 	#finds the tile at position x,y on board
