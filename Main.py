@@ -60,7 +60,7 @@ def gameLoop():
 
 	for enemy in Renderer.enemiesToInit:
 		Enemy.finish_init(enemy)
-	enemiesToInit = []
+	Renderer.enemiesToInit = []
 	for enemy in Renderer.enemyList:
 		Enemy.update(enemy)
 
