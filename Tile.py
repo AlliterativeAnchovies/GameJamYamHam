@@ -59,7 +59,12 @@ class Screen:
 		self.px = 0
 		self.py = 0
 
-
+	#returns a list of all tiles touching the tile at (x,y), [including
+	#the tile at x,y], that satisfy condition
+	def fillFind(x,y,condition):
+		return board.fillFindInternal(x,y,condition)
+	def fillFindInternal(self,x,y,condition):
+		pass
 	#finds closest tile on board that satisfies a condition
 	#condition(None)=True cause this to return None if it reaches
 	#the end of the screen.  It will also return None if no such
