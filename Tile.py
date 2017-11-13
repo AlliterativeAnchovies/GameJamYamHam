@@ -3,6 +3,7 @@ from Renderer import SPRITE_SIZE,GRID_SIZE,SCREEN_WIDTH,gridList,spriteList,enem
 from GridGenerator import generateNewGrid
 import pygame,os
 from Enemy import Enemy
+import DebugDefines
 board = None
 GRID_PIXEL_SIZE = (GRID_SIZE*SPRITE_SIZE)
 EXCESS_GRIDS = 5
@@ -256,7 +257,8 @@ class Screen:
 
 		# When the right-most-grid needs to be generated
 		if (self.px + SCREEN_WIDTH) % GRID_PIXEL_SIZE == 0:
-			print("Whoop")
+			if DebugDefines.WHOOPS_ON_GRID_CREATION:
+				print("Whoop")
 			for row in range(rows):
 				leftGrid = self.gridList[row][-1]
 				upGrid = self.gridList[row-1][-1] if rows-1 >= 0 else None

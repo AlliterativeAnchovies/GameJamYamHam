@@ -2,3 +2,4 @@
 #So we don't annoy eachother with debug prints
 PRINT_ENEMY_BIRTHS = True
 SHOW_ENEMY_PATHS = True
+WHOOPS_ON_GRID_CREATION = True
