@@ -36,7 +36,7 @@ def loadSprites():
 		#print(allSprites[bmp].set_at((0,0),(0,0,0,0)))
 
 def loadNames():
-	enemyNames.extend(open('resources/text/names.txt','r').read().split())
+	enemyNames.extend(open('resources/text/names.txt','r').read().split("\n"))
 
 
 #Python is really annoying in how it handles importing global variables.
