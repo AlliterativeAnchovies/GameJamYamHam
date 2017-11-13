@@ -69,23 +69,23 @@ class Screen:
 	#condition(None)=True cause this to return None if it reaches
 	#the end of the screen.  It will also return None if no such
 	#tile is found
-	def findClosest(x,y,condition,includestart=None):
+	def findClosest(x,y,condition,startingDirection=None,includestart=None):
+		return board.findClosestInternal(x,y,condition,startingDirection,includestart)
+	def findClosestInternal(self,x,y,condition,startingDirection,includestart):
+		UP = 0
+		LEFT = 1
+		DOWN = 2
+		RIGHT = 3
 		if includestart is None:
 			includestart = False
-		return board.findClosestInternal(x,y,condition,includestart)
-	def findClosestInternal(self,x,y,condition,includestart=None):
-		if includestart is None:
-			includestart = False
+		if startingDirection is None:
+			startingDirection = UP
 		startingTile = self.querySpecificScreen(x,y)
 		if (includestart and condition(startingTile)):
 			return startingTile
 		tileschecked = 0
 		tilestocheck = GRID_SIZE*len(self.gridList)*len(self.gridList[0])
-		UP = 0
-		LEFT = 1
-		DOWN = 2
-		RIGHT = 3
-		directionLooking = UP
+		directionLooking = startingDirection
 		spiralLength = 1
 		curSpiralsSearched = 0
 		#look in a spiral
@@ -105,8 +105,8 @@ class Screen:
 			curSpiralsSearched+=1
 			if curSpiralsSearched==spiralLength:
 				curSpiralsSearched = 0
-				#spiral grows biger when looking left or right
-				if directionLooking is LEFT or directionLooking is RIGHT:
+				#spiral grows bigger every other turn
+				if (directionLooking is (startingDirection+1)%4) or (directionLooking is (startingDirection+3)%4):
 					spiralLength+=1
 				directionLooking = (directionLooking+1)%4
 		return None
