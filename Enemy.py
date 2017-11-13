@@ -104,6 +104,10 @@ def id0initial(this):
 			bottom = Tile.Screen.queryScreen(a.px,a.py+16)
 			left = Tile.Screen.queryScreen(a.px-16,a.py)
 			right = Tile.Screen.queryScreen(a.px+16,a.py)
+			c1 = Tile.Screen.queryScreen(a.px-16,a.py-16)
+			c2 = Tile.Screen.queryScreen(a.px-16,a.py+16)
+			c3 = Tile.Screen.queryScreen(a.px+16,a.py+16)
+			c4 = Tile.Screen.queryScreen(a.px+16,a.py-16)
 			if (top is not None and Tile.Tile.isNice(top)):
 				walltohugadjacencies.append(top)
 			if (bottom is not None and Tile.Tile.isNice(bottom)):
@@ -112,6 +116,14 @@ def id0initial(this):
 				walltohugadjacencies.append(left)
 			if (right is not None and Tile.Tile.isNice(right)):
 				walltohugadjacencies.append(right)
+			if (c1 is not None and Tile.Tile.isNice(c1)):
+				walltohugadjacencies.append(c1)
+			if (c2 is not None and Tile.Tile.isNice(c2)):
+				walltohugadjacencies.append(c2)
+			if (c3 is not None and Tile.Tile.isNice(c3)):
+				walltohugadjacencies.append(c3)
+			if (c4 is not None and Tile.Tile.isNice(c4)):
+				walltohugadjacencies.append(c4)
 		walltohugadjacencies = list(set(walltohugadjacencies))#remove duplicates
 		for b in walltohugadjacencies:
 			#b.changeState("debug")
@@ -127,7 +139,7 @@ def id0initial(this):
 			patharoundwall.append(possibilities[0])
 			lastadjacent = possibilities[0]
 		for c in patharoundwall:
-			#c.changeState("debug")
+			c.changeState("debug")
 			pass
 		this.path = patharoundwall
 		this.pathindex = 0
