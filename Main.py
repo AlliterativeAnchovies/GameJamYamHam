@@ -22,6 +22,7 @@ import Snek
 
 def init():
 	Renderer.loadSprites()
+	Renderer.loadNames()
 	initializeEnemies()
 	loadGrids()
 	#print(spriteList)

@@ -1,8 +1,9 @@
 #Enemy are baddies that do bad stuff beccause they're mean.
 from Movable import Movable
 import Tile
-from Renderer import spriteList,enemyList,enemiesToInit
+from Renderer import spriteList,enemyList,enemiesToInit,enemyNames
 import math
+from random import choice
 enemyArchetypes = []
 FORWARD = 1
 BACKWARD = -1
@@ -20,6 +21,7 @@ class Enemy(Movable):
 		self.pathindex = 0
 		self.direction = FORWARD
 		self.inited = False
+		self.name = "archetype"
 	#this should be called to create a new enemy
 	def create(id):
 		global spriteList
@@ -28,6 +30,7 @@ class Enemy(Movable):
 		spriteList.append(newEnemy)
 		enemyList.append(newEnemy)
 		enemiesToInit.append(newEnemy)
+		print(newEnemy.name + " was born.")
 		return newEnemy
 
 	def clone(self):
@@ -39,6 +42,7 @@ class Enemy(Movable):
 		toReturn.pathindex = 0
 		toReturn.direction = FORWARD
 		toReturn.inited = False
+		toReturn.name = choice(enemyNames)
 		return toReturn
 
 	def getPath(self):
