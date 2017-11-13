@@ -27,6 +27,7 @@ class Enemy(Movable):
 		toReturn.id = self.id
 		toReturn.behavior = self.behavior
 		toReturn.initial = self.initial
+		toReturn.initial(toReturn)
 		return toReturn
 
 	def update(self):
@@ -49,6 +50,10 @@ def id0initial(this):
 	#here, our goal is to find the closest 'wall' and then
 	#create a path that 'circles' it.  Then id0behavior will
 	#just have the enemy follow that path.
+	condition = lambda tile: tile is not None and not tile.passable
+	tilefound = (Tile.Screen.findClosest(this.px,this.py,condition))
+	if tilefound is not None:
+		tilefound.changeState("debug")
 	pass
 
 def initializeEnemies():
