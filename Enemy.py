@@ -72,7 +72,6 @@ def id0behavior(this):
 		toheadto = this.path[this.pathindex]
 		if tileon==toheadto:#arrived at destination, choose new destination
 			this.pathindex+=this.direction
-			print(this.direction)
 			if this.pathindex>=len(this.path) or this.pathindex<0:#change direction
 				this.direction*=-1
 				this.pathindex+=2*this.direction
