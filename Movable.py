@@ -15,6 +15,7 @@ class Movable(Sprite):
 		toReturn.vy = 0
 		toReturn.pvx = 0
 		toReturn.pvy = 0
+		toReturn.follower = None
 		return toReturn
 
 	def addFollower(self,follower):
@@ -41,7 +42,8 @@ class Movable(Sprite):
 				self.follower.changeVelocity(self.pvx,self.pvy)
 			self.pvx = self.vx
 			self.pvy = self.vy
-		self.follower.move();
+		if self.follower is not None:
+			self.follower.move();
 
 	def update():
 		pass

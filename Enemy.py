@@ -60,14 +60,15 @@ class Enemy(Movable):
 
 	def update(self):
 		self.behavior(self)
+		Movable.move(self)
 		#(Tile.Screen.queryScreen(self.px,self.py)).changeState("teststate")
 
 def noBehavior(this):
 	pass
 
 def id0behavior(this):
-	if (len(Enemy.getPath(this))>0):
-		toheadto = Enemy.getPath(this)[Enemy.getPathIndex(this)]
+	if (len(this.path)>0):
+		toheadto = this.path[this.pathindex]
 		deltx = toheadto.px-this.px
 		delty = toheadto.py-this.py
 		mag = math.sqrt(deltx*deltx+delty*delty)
@@ -130,7 +131,7 @@ def id0initial(this):
 			patharoundwall.append(possibilities[0])
 			lastadjacent = possibilities[0]
 		for c in patharoundwall:
-			c.changeState("debug")
+			#c.changeState("debug")
 			pass
 		this.path = patharoundwall
 		this.pathindex = 0
