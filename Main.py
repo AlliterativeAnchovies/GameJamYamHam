@@ -65,7 +65,8 @@ def gameLoop():
 	#remove excess enemies
 	Renderer.enemiesToInit = [x for x in Renderer.enemiesToInit if not Enemy.isinit(x)]
 	for enemy in Renderer.enemyList:
-		Enemy.update(enemy)
+		if (Enemy.isinit(enemy)):
+			Enemy.update(enemy)
 
 	return False
 

@@ -66,15 +66,6 @@ def noBehavior(this):
 	pass
 
 def id0behavior(this):
-	"""
-	#head right if possible
-	top = Tile.Screen.queryScreen(this.px,this.py-16)
-	bottom = Tile.Screen.queryScreen(this.px,this.py+16)
-	left = Tile.Screen.queryScreen(this.px-16,this.py)
-	right = Tile.Screen.queryScreen(this.px+16,this.py)
-	if (right is not None and Tile.Tile.isNice(right)):
-		Movable.rawmove(this,0,0)
-	"""
 	if (len(Enemy.getPath(this))>0):
 		toheadto = Enemy.getPath(this)[Enemy.getPathIndex(this)]
 		deltx = toheadto.px-this.px
