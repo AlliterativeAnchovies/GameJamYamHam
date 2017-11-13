@@ -59,6 +59,19 @@ class Screen:
 		self.px = 0
 		self.py = 0
 
+
+	#finds closest tile on board that satisfies a condition
+	def findClosest(x,y,condition,includestart=None):
+		if includestart is None:
+			includestart = False
+		return board.findClosestInternal(x,y,condition,includestart)
+	def findClosestInternal(self,x,y,condition,includestart=None):
+		if includestart is None:
+			includestart = False
+		startingTile = querySpecificScreen(this,x,y)
+		if (includestart and condition(startingTile)):
+			return startingTile
+
 	#finds the tile at position x,y on board
 	def queryScreen(x,y):
 		return board.querySpecificScreen(x,y)
@@ -153,11 +166,11 @@ def loadGrids():
 			for j in range(GRID_SIZE):
 				pixelcolor = (relevantPixels[i][j]<<8)>>8 #shifting so that we get rid of alpha values
 				if (pixelcolor==0x00ffffff):
-					dummyspritedict = {"defaultstate":["Base Tile 1"],"teststate":["FireTile_1"]}
+					dummyspritedict = {"defaultstate":["Base Tile 1"],"debug":["FireTile_1"]}
 					tiletoappend = Tile(dummyspritedict,0,0,True,0)
 					tileRow.append(tiletoappend)
 				elif (pixelcolor==0x00000000):
-					dummyspritedict = {"defaultstate":["Base Wall 1"]}
+					dummyspritedict = {"defaultstate":["Base Wall 1"],"debug":["Head"]}
 					tiletoappend = Tile(dummyspritedict,0,0,False,0)
 					tileRow.append(tiletoappend)
 				elif (pixelcolor==0x00ff0000):
