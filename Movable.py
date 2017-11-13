@@ -8,7 +8,9 @@ class Movable(Sprite):
 		#self.pvx = 0 #previous velocity, stored to help out its snake followers
 		#self.pvy = 0
 		self.movingto = None
+		self.backlog = None #If recieves a move command while still moving, goes here
 		self.follower = None #a Movable is a Snake.  This links to its follower
+		self.smoothtransitioncounter = 0#from 0-1 representing sprite inbetween thingies
 
 	def clone(self):
 		toReturn = Sprite.clone(self)
@@ -18,7 +20,9 @@ class Movable(Sprite):
 		toReturn.pvx = 0
 		toReturn.pvy = 0
 		"""
-		self.movingto = None
+		toReturn.movingto = None
+		toReturn.backlog = None
+		toReturn.smoothtransitioncounter = 0
 		toReturn.follower = None
 		return toReturn
 
@@ -48,7 +52,15 @@ class Movable(Sprite):
 		if (not (x==0 or x==1 or x==-1)) or (not (y==0 or y==1 or y==-1)):
 			print("Error: May not move more than 1 space at a time")
 		else:
-			self.movingto = Tile.Screen.queryScreen(self.px,self.py)
+			if self.movingto is not None:
+				self.backlog = Tile.Screen.queryScreen(self.px,self.py)
+			else:
+				self.movingto = Tile.Screen.queryScreen(self.px,self.py)
+
+	def draw(self):
+		offx = int((movingto.px-self.px)*self.smoothtransitioncounter)
+		offy = int((movingto.py-self.py)*self.smoothtransitioncounter)
+		Sprite.draw_with_offset(self,offx,offy)
 
 	"""
 	def move(self):
@@ -64,4 +76,11 @@ class Movable(Sprite):
 	"""
 
 	def update():
-		pass
+		if (self.movingto is not None):
+			self.smoothtransitioncounter+=0.1
+			if (self.smoothtransitioncounter>=1):
+				self.smoothtransitioncounter=0
+				self.px = self.movingto.px
+				self.py = self.movingto.py
+				self.movingto=self.backlog
+				self.backlog=None

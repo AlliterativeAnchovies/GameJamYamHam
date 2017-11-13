@@ -23,14 +23,15 @@ class Sprite:
 	#changes the tickrate
 	def setTickrate(self,t):
 		self.tickrate = t
-	#blits to the screen the current sprite at its location
-	def draw(self):
-		#print(allSprites)
-		#blitto.blit(allSprites[self.cursprite+'.bmp'],(self.px, self.py),pygame.rect.Rect((0,0,SPRITE_SIZE, SPRITE_SIZE)),pygame.BLEND_RGBA_MAX)#This gives trippy thingy
-		#blitto.blit(allSprites[self.cursprite+'.bmp'],(self.px, self.py),pygame.rect.Rect((0,0,SPRITE_SIZE, SPRITE_SIZE)),pygame.BLEND_RGBA_ADD)#This gives fade-to-white
-		screen.blit(allSprites[self.cursprite+'.bmp'],(self.px, self.py))
+
+	def draw_with_offset(self,x,y):
+		screen.blit(allSprites[self.cursprite+'.bmp'],(self.px+x, self.py+y))
 		if ((tick[0])%self.tickrate==0):#update animation
 			self.updateFrame()
+	#blits to the screen the current sprite at its location
+	def draw(self):
+		self.draw_with_offset(0,0)
+
 	#takes in one input, a string which is the name of the state we're changing it to
 	def changeState(self,newState):
 		self.curstate = newState
