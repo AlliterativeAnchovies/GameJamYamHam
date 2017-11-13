@@ -58,9 +58,12 @@ def gameLoop():
 			if event.key in pressMap:
 				Snek.moveSnek(*pressMap[event.key])
 
+	#init enemies when they are almost on screen
 	for enemy in Renderer.enemiesToInit:
-		Enemy.finish_init(enemy)
-	Renderer.enemiesToInit = []
+		if (enemy.px<Renderer.SCREEN_WIDTH+2*Renderer.SPRITE_SIZE):
+			Enemy.finish_init(enemy)
+	#remove excess enemies
+	Renderer.enemiesToInit = [x for x in Renderer.enemiesToInit if not Enemy.isinit(x)]
 	for enemy in Renderer.enemyList:
 		Enemy.update(enemy)
 

@@ -19,6 +19,7 @@ class Enemy(Movable):
 		self.path = []
 		self.pathindex = 0
 		self.direction = FORWARD
+		self.inited = False
 	#this should be called to create a new enemy
 	def create(id):
 		global spriteList
@@ -37,6 +38,7 @@ class Enemy(Movable):
 		toReturn.path = []
 		toReturn.pathindex = 0
 		toReturn.direction = FORWARD
+		toReturn.inited = False
 		return toReturn
 
 	def getPath(self):
@@ -50,7 +52,11 @@ class Enemy(Movable):
 
 	#performs its initial function
 	def finish_init(self):
+		self.inited = True
 		self.initial(self)
+
+	def isinit(self):
+		return self.inited
 
 	def update(self):
 		self.behavior(self)
