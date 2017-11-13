@@ -72,6 +72,7 @@ def id0behavior(this):
 		toheadto = this.path[this.pathindex]
 		if tileon==toheadto:#arrived at destination, choose new destination
 			this.pathindex+=this.direction
+			print(this.direction)
 			if this.pathindex>=len(this.path) or this.pathindex<0:#change direction
 				this.direction*=-1
 				this.pathindex+=2*this.direction
@@ -83,6 +84,8 @@ def id0behavior(this):
 			deltx/=mag
 			delty/=mag
 			Movable.changeVelocity(this,deltx,delty)
+		else:#stay still if at target
+			Movable.changeVelocity(this,0,0)
 
 
 def id0initial(this):
@@ -138,7 +141,7 @@ def id0initial(this):
 			patharoundwall.append(possibilities[0])
 			lastadjacent = possibilities[0]
 		for c in patharoundwall:
-			#c.changeState("debug")
+			c.changeState("debug")
 			pass
 		this.path = patharoundwall
 		this.pathindex = 0
