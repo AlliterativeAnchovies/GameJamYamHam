@@ -34,6 +34,9 @@ class Enemy(Movable):
 		toReturn.id = self.id
 		toReturn.behavior = self.behavior
 		toReturn.initial = self.initial
+		toReturn.path = []
+		toReturn.pathindex = 0
+		toReturn.direction = FORWARD
 		return toReturn
 
 	def getPath(self):
