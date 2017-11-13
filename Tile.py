@@ -1,8 +1,8 @@
 from Sprite import Sprite
 from Renderer import SPRITE_SIZE,GRID_SIZE,SCREEN_WIDTH,gridList,spriteList,enemyList,tileList
 from GridGenerator import generateNewGrid
-from Enemy import Enemy
 import pygame,os
+from Enemy import Enemy
 board = None
 GRID_PIXEL_SIZE = (GRID_SIZE*SPRITE_SIZE)
 
@@ -53,16 +53,28 @@ class Screen:
 		self.px = 0
 		self.py = 0
 
-	#finds the tile at position x,y
-	def queryScreen(self, x, y):
-		actualx = int(x/SPRITE_SIZE)
-		actualy = int(y/SPRITE_SIZE)
-		gridx = actualx%GRID_SIZE
-		gridy = actualy%GRID_SIZE
+	#finds the tile at position x,y on board
+	def queryScreen(x,y):
+		return board.querySpecificScreen(x,y)
+
+	#finds the tile at position x,y on any screen
+	def querySpecificScreen(self, x, y):
+		#get x coord of first tile:
+		firsttilex = self.gridList[0][0].px
+		#shift incoming position to account for that
+		x-=firsttilex
+		#find what grid its on
+		gridx = x//(GRID_PIXEL_SIZE)
+		gridy = y//(GRID_PIXEL_SIZE)
 		relevantGrid = self.gridList[gridy][gridx]
-		actualx -= gridx*GRID_SIZE
-		actualy -= gridy*GRID_SIZE
-		relevantTile = relevantGrid[actualy][actualx]
+		#shift x,y to be relative to this grid
+		x = x%GRID_PIXEL_SIZE
+		y = y%GRID_PIXEL_SIZE
+		#and now make x,y represent tiles not pixels
+		x = x//SPRITE_SIZE
+		y = y//SPRITE_SIZE
+		#get relevant tile
+		relevantTile = relevantGrid.tiles[y][x]
 		return relevantTile
 
 	def addToScreen(self, grid, x, y):
@@ -131,7 +143,7 @@ def loadGrids():
 			for j in range(GRID_SIZE):
 				pixelcolor = (relevantPixels[i][j]<<8)>>8 #shifting so that we get rid of alpha values
 				if (pixelcolor==0x00ffffff):
-					dummyspritedict = {"defaultstate":["Base Tile 1"]}
+					dummyspritedict = {"defaultstate":["Base Tile 1"],"teststate":["FireTile_1"]}
 					tiletoappend = Tile(dummyspritedict,0,0,True,0)
 					tileRow.append(tiletoappend)
 				elif (pixelcolor==0x00000000):

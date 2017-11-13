@@ -33,8 +33,8 @@ class Sprite:
 			self.updateFrame()
 	#takes in one input, a string which is the name of the state we're changing it to
 	def changeState(self,newState):
-		self.curstate = self.sprites["newState"]
-		self.cursprite = self.curstate[0]
+		self.curstate = newState
+		self.cursprite = self.sprites[self.curstate][0]
 		self.animationframe = 0
 	#increments the animation frame of the sprite
 	def updateFrame(self):

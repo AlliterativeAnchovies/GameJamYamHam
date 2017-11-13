@@ -1,5 +1,6 @@
 #Enemy are baddies that do bad stuff beccause they're mean.
 from Movable import Movable
+import Tile
 from Renderer import spriteList,enemyList
 enemyArchetypes = []
 
@@ -28,6 +29,7 @@ class Enemy(Movable):
 
 	def update(self):
 		self.behavior(self)
+		(Tile.Screen.queryScreen(self.px,self.py)).changeState("teststate")
 
 def id0behavior(this):
 	Movable.rawmove(this,0,0)
