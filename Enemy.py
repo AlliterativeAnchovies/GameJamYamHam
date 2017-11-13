@@ -54,14 +54,30 @@ def id0initial(this):
 	#here, our goal is to find the closest 'wall' and then
 	#create a path that 'circles' it.  Then id0behavior will
 	#just have the enemy follow that path.
-	condition = lambda tile: tile is not None and not tile.passable
+	condition = lambda tile: (tile is not None) and (not tile.passable)
+	condition2 = lambda tile: (tile is not None) and (not Tile.Tile.isNice(tile))
 	closestwall = (Tile.Screen.findClosest(this.px,this.py,condition))
 	if closestwall is not None:
-		closestwall.changeState("debug")
-		walltohug = Tile.Screen.fillFind(closestwall.px,closestwall.py,condition)
+		#closestwall.changeState("debug")
+		walltohug = Tile.Screen.fillFind(closestwall.px,closestwall.py,condition2)
+		walltohugadjacencies = []
+		#we have found the wall, now let's find the walkable path adjacent to it
 		for a in walltohug:
-			a.changeState("debug")
-	pass
+			#a.changeState("debug")
+			top = Tile.Screen.queryScreen(a.px,a.py-16)
+			bottom = Tile.Screen.queryScreen(a.px,a.py+16)
+			left = Tile.Screen.queryScreen(a.px-16,a.py)
+			right = Tile.Screen.queryScreen(a.px+16,a.py)
+			if (top is not None and Tile.Tile.isNice(top)):
+				walltohugadjacencies.append(top)
+			if (bottom is not None and Tile.Tile.isNice(bottom)):
+				walltohugadjacencies.append(bottom)
+			if (left is not None and Tile.Tile.isNice(left)):
+				walltohugadjacencies.append(left)
+			if (right is not None and Tile.Tile.isNice(right)):
+				walltohugadjacencies.append(right)
+		for b in walltohugadjacencies:
+			b.changeState("debug")
 
 def initializeEnemies():
 	global enemyArchetypes
