@@ -74,8 +74,16 @@ def id0behavior(this):
 		if tileon==toheadto:#arrived at destination, choose new destination
 			this.pathindex+=this.direction
 			if this.pathindex>=len(this.path) or this.pathindex<0:#change direction
-				this.direction*=-1
-				this.pathindex+=2*this.direction
+				#check if should loop path forward
+				if this.direction==FORWARD and Tile.Tile.adjacent(this.path[0],tileon):
+					this.pathindex = 0
+				#check if should loop path backward
+				elif this.direction==BACKWARD and Tile.Tile.adjacent(this.path[-1],tileon):
+					this.pathindex = len(this.path)-1
+				#cant loop, turn around
+				else:
+					this.direction*=-1
+					this.pathindex+=2*this.direction
 			toheadto = this.path[this.pathindex]
 		deltx = toheadto.px-this.px
 		delty = toheadto.py-this.py
@@ -144,7 +152,7 @@ def id0initial(this):
 			patharoundwall.append(possibilities[0])
 			lastadjacent = possibilities[0]
 		for c in patharoundwall:
-			#c.changeState("debug")
+			c.changeState("debug")
 			pass
 		this.path = patharoundwall
 		this.pathindex = 0
