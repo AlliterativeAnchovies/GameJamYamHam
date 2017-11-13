@@ -61,11 +61,16 @@ def gameLoop():
 	for enemy in Renderer.enemiesToInit:
 		if (enemy.px<Renderer.SCREEN_WIDTH+2*Renderer.SPRITE_SIZE):
 			Enemy.finish_init(enemy)
-	#remove excess enemies
+	#remove inited enemies
 	Renderer.enemiesToInit = [x for x in Renderer.enemiesToInit if not Enemy.isinit(x)]
+	#actual enemy logic
 	for enemy in Renderer.enemyList:
 		if (Enemy.isinit(enemy)):
 			Enemy.update(enemy)
+		if (enemy.px<-10):
+			Enemy.on_survived_board(enemy)
+	#remove enemies that cleared the board
+	Renderer.enemyList = [x for x in Renderer.enemyList if not Enemy.needsremoving(x)]
 
 	return False
 

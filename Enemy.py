@@ -22,6 +22,7 @@ class Enemy(Movable):
 		self.pathindex = 0
 		self.direction = FORWARD
 		self.inited = False
+		self.removeflag = False
 		self.name = "Archetype"
 		self.lastname = "Johnson"
 	#this should be called to create a new enemy
@@ -50,6 +51,7 @@ class Enemy(Movable):
 		toReturn.inited = False
 		toReturn.name = choice(enemyNames)
 		toReturn.lastname = choice(enemyLastNames)
+		toReturn.removeflag = False
 		return toReturn
 
 	def getPath(self):
@@ -68,6 +70,14 @@ class Enemy(Movable):
 
 	def isinit(self):
 		return self.inited
+
+	def needsremoving(self):
+		return self.removeflag
+
+	def on_survived_board(self):
+		self.removeflag = True
+		if DebugDefines.PRINT_ENEMY_SURVIVALS:
+			print(Enemy.getName(self) + " survived a day at work.")
 
 	def update(self):
 		Movable.update(self)
