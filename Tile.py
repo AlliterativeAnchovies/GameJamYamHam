@@ -95,28 +95,28 @@ class Screen:
 		c4 = self.querySpecificScreen(x+16,y-16)
 		if not (top is None or top in searched) and condition(top):
 			searched.append(top)
-			searched = self.fillFindInternal(x,y-16,condition,searched)
+			searched = self.fillFindInternal_loose(x,y-16,condition,searched)
 		if not (bottom is None or bottom in searched) and condition(bottom):
 			searched.append(bottom)
-			searched = self.fillFindInternal(x,y+16,condition,searched)
+			searched = self.fillFindInternal_loose(x,y+16,condition,searched)
 		if not (left is None or left in searched) and condition(left):
 			searched.append(left)
-			searched = self.fillFindInternal(x-16,y,condition,searched)
+			searched = self.fillFindInternal_loose(x-16,y,condition,searched)
 		if not (right is None or right in searched) and condition(right):
 			searched.append(right)
-			searched = self.fillFindInternal(x+16,y,condition,searched)
+			searched = self.fillFindInternal_loose(x+16,y,condition,searched)
 		if not (c1 is None or c1 in searched) and condition(c1):
 			searched.append(c1)
-			searched = self.fillFindInternal(x-16,y-16,condition,searched)
+			searched = self.fillFindInternal_loose(x-16,y-16,condition,searched)
 		if not (c2 is None or c2 in searched) and condition(c2):
 			searched.append(c2)
-			searched = self.fillFindInternal(x-16,y+16,condition,searched)
+			searched = self.fillFindInternal_loose(x-16,y+16,condition,searched)
 		if not (c3 is None or c3 in searched) and condition(c3):
 			searched.append(c3)
-			searched = self.fillFindInternal(x+16,y+16,condition,searched)
+			searched = self.fillFindInternal_loose(x+16,y+16,condition,searched)
 		if not (c4 is None or c4 in searched) and condition(c4):
 			searched.append(c4)
-			searched = self.fillFindInternal(x+16,y-16,condition,searched)
+			searched = self.fillFindInternal_loose(x+16,y-16,condition,searched)
 		return searched
 
 	#returns a list of all tiles touching the tile at (x,y), [including
