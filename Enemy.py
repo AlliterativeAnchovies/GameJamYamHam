@@ -29,10 +29,15 @@ class Enemy(Movable):
 
 	def update(self):
 		self.behavior(self)
-		(Tile.Screen.queryScreen(self.px,self.py)).changeState("teststate")
+		#(Tile.Screen.queryScreen(self.px,self.py)).changeState("teststate")
 
 def id0behavior(this):
-	Movable.rawmove(this,0,0)
+	top = Tile.Screen.queryScreen(this.px,this.py-16)
+	bottom = Tile.Screen.queryScreen(this.px,this.py+16)
+	left = Tile.Screen.queryScreen(this.px-16,this.py)
+	right = Tile.Screen.queryScreen(this.px+16,this.py)
+	if (right is not None and Tile.Tile.isNice(right)):
+		Movable.rawmove(this,1,0)
 
 def initializeEnemies():
 	global enemyArchetypes

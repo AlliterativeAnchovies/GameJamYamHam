@@ -26,6 +26,12 @@ class Tile(Sprite):
 		toReturn.moveable = self.moveable.clone() if self.moveable else None
 		return toReturn
 
+	#if this is a 'smart' move, because it is allowed and won't hurt you
+	#useful for AI because then you don't have to keep reusing the same line
+	#over and over again
+	def isNice(self):
+		return self.passable and (self.damage<=0)
+
 class Grid:
 	#this represents our 4x4 chunks of tiles
 	#Takes in 3 arguments, a 4x4 2d list of tiles
@@ -66,6 +72,8 @@ class Screen:
 		#find what grid its on
 		gridx = x//(GRID_PIXEL_SIZE)
 		gridy = y//(GRID_PIXEL_SIZE)
+		if gridx not in range(len(self.gridList)) or gridy not in range(len(self.gridList[gridx])):
+			return None
 		relevantGrid = self.gridList[gridy][gridx]
 		#shift x,y to be relative to this grid
 		x = x%GRID_PIXEL_SIZE
@@ -74,6 +82,8 @@ class Screen:
 		x = x//SPRITE_SIZE
 		y = y//SPRITE_SIZE
 		#get relevant tile
+		if x not in range(len(relevantGrid.tiles)) or y not in range(len(relevantGrid.tiles[x])):
+			return None
 		relevantTile = relevantGrid.tiles[y][x]
 		return relevantTile
 
