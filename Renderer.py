@@ -24,6 +24,7 @@ tileList = []
 enemiesToInit = []
 enemyNames = []
 enemyLastNames = []
+ENEMY_GEN_CHANCE = 0.02
 
 def loadSprites():
 	getfiles = os.listdir('./resources/images')
