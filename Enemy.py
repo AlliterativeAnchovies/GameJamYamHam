@@ -100,7 +100,7 @@ def id0initial(this):
 	closestwall = (Tile.Screen.findClosest(this.px,this.py,condition))
 	if closestwall is not None:
 		#closestwall.changeState("debug")
-		walltohug = Tile.Screen.fillFind(closestwall.px,closestwall.py,condition2)
+		walltohug = Tile.Screen.fillFind_loose(closestwall.px,closestwall.py,condition2)
 		walltohugadjacencies = []
 		#we have found the wall, now let's find the walkable path adjacent to it
 		for a in walltohug:

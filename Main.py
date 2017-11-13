@@ -28,8 +28,6 @@ def init():
 
 #draw everything
 def drawLoop():
-	Renderer.tick.append(Renderer.tick[0]+1)
-	Renderer.tick.pop(0)
 	Renderer.screen.fill((255, 255, 255))
 	for drawable in Renderer.tileList:
 		Tile.draw(drawable)
@@ -71,14 +69,17 @@ def gameLoop():
 	return False
 
 
-DRAW_TO_GAME_RATIO = 1#ratio of draw updates to game updates
+DRAWS_PER_GAMELOOP = 1#ratio of draw updates to game updates
 #controls the flow of the program
 def controlLoop():
 	error = False
 	while not error:
 		error = error or drawLoop()#todo: add some kind of tick control mechanism
-		error = error or gameLoop()#for updating these (for example, update gameLoop 1/3 as often)
+		if (Renderer.tick[0]%DRAWS_PER_GAMELOOP==0):
+			error = error or gameLoop()#for updating these (for example, update gameLoop 1/3 as often)
 		Renderer.clock.tick(60)
+		Renderer.tick.append(Renderer.tick[0]+1)
+		Renderer.tick.pop(0)
 
 #run the code
 init()
